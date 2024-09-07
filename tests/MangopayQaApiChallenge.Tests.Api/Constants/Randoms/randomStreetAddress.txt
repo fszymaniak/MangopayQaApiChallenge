@@ -1,0 +1,10 @@
+2, Villa Gaudelet
+12, Boulevard Bessières
+28, Rue de la Source
+41b, Rue Crozatier
+8, Rue Courat
+7, Rue Sainte-Isaure
+Cité Scolaire Internationale Honoré-de-Balzac, 118, Boulevard Bessières
+10 bis, Rue Morand
+11, Rue Jacques Kellner
+3, Boulevard des Frères Voisin
