@@ -7,7 +7,7 @@ using MangopayQaApiChallenge.Tests.Api.Tools.Randomizers;
 using MangopayQaApiChallenge.Tests.Api.Validators;
 using Shouldly;
 
-namespace MangopayQaApiChallenge.Tests.Api.Tests.CreateNaturalPayerTests.HappyPaths;
+namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
 
 public class CreateNaturalPayerTestsHappyPath : TestBaseSetup
 {
@@ -27,12 +27,22 @@ public class CreateNaturalPayerTestsHappyPath : TestBaseSetup
     {
         UserNaturalPayerPostDTO userNaturalPayerPostDto = _userFactory.CreateValidUser();
         
-        var clientId = Api.Config.ClientId;
         var results = await Api.Users.CreatePayerAsync(userNaturalPayerPostDto);
         await _statusCodeValidator.ValidateStatusCode200Ok();
 
         var userId = results.Id;
         userId.ShouldNotBe(null);
         userId.ShouldContain("user_m_");
+    }
+    
+    [Test]
+    public async Task NaturalUserEndpoint_CreateUserIsUnique_Successfully()
+    {
+        UserNaturalPayerPostDTO userNaturalPayerPostDto = _userFactory.CreateValidUser();
+        
+        var firstResults = await Api.Users.CreatePayerAsync(userNaturalPayerPostDto);
+        var secondResults = await Api.Users.CreatePayerAsync(userNaturalPayerPostDto);
+        
+        firstResults.Id.ShouldNotBe(secondResults.Id);
     }
 }
