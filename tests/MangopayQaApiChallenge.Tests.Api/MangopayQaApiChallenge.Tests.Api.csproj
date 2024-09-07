@@ -7,6 +7,7 @@
 
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
+        <UserSecretsId>0a7ade41-737b-4980-ae95-3360359a0e9c</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,6 +18,7 @@
         <PackageReference Include="coverlet.collector" Version="6.0.0"/>
         <PackageReference Include="mangopay2-sdk" Version="3.19.1" />
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
         <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
         <PackageReference Include="NETStandard.Library" Version="2.0.3" />
@@ -43,6 +45,9 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="Constants\Randoms\randomStreetNames.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="appsettings.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>
