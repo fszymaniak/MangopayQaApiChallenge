@@ -12,6 +12,7 @@ public class TestBaseSetup
     {
         var config = new ConfigurationBuilder()
             .AddJsonFile("appSettings.json", optional: false)
+            .AddUserSecrets<TestBaseSetup>()
             .Build();
 
         _appSettings = config.Get<AppSettings>()!;
