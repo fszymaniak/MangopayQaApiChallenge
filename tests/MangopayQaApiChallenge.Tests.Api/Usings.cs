@@ -1,1 +1,10 @@
 global using NUnit.Framework;
+global using MangoPay.SDK;
+global using MangoPay.SDK.Entities.POST;
+global using MangopayQaApiChallenge.Tests.Api.Configuration;
+global using MangopayQaApiChallenge.Tests.Api.Constants;
+global using MangopayQaApiChallenge.Tests.Api.Factories;
+global using MangopayQaApiChallenge.Tests.Api.Tools.Providers;
+global using MangopayQaApiChallenge.Tests.Api.Tools.Randomizers;
+global using MangopayQaApiChallenge.Tests.Api.Validators;
+global using Shouldly;
