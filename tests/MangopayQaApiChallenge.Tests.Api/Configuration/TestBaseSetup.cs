@@ -11,6 +11,7 @@ public class TestBaseSetup
     protected readonly MangoPayApi Api;
     protected readonly IUserFactory UserFactory;
     protected readonly IWalletFactory WalletFactory;
+    protected readonly ICardFactory CardFactory;
     protected readonly IStatusCodeValidator StatusCodeValidator;
     protected readonly IIdValidator IdValidator;
     private readonly IPathProvider _pathProvider;
@@ -30,6 +31,7 @@ public class TestBaseSetup
         _userValuesRandomizer = new UserValuesRandomizer();
         UserFactory = new UserFactory(_pathProvider, _userValuesRandomizer);
         WalletFactory = new WalletFactory();
+        CardFactory = new CardFactory();
         StatusCodeValidator = new StatusCodeValidator(Api);
         IdValidator = new IdValidator();
 
