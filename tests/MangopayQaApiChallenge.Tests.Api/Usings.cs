@@ -12,3 +12,4 @@ global using MangoPay.SDK.Entities.GET;
 global using Allure.NUnit;
 global using Microsoft.Extensions.Configuration;
 global using Allure.NUnit.Attributes;
+global using MangoPay.SDK.Core;

@@ -1,5 +1,8 @@
 ﻿
 
+using Allure.Net.Commons;
+using NUnit.Framework.Interfaces;
+
 namespace MangopayQaApiChallenge.Tests.Api.Configuration;
 
 [AllureNUnit]
@@ -37,5 +40,15 @@ public class TestBaseSetup
     {
         Api.Config.ClientId = _appSettings.ClientId;
         Api.Config.ClientPassword = _appSettings.ClientPassword;
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+        {
+            // here you can add your screen shot
+            // AllureApi.AddScreenDiff("expected.png", "actual.png", "diff.png");
+        }
     }
 }
