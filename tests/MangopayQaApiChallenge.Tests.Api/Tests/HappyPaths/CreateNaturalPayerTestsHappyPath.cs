@@ -1,7 +1,9 @@
 namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
 
-[TestFixture]
-[AllureNUnit]
+[AllureFeature("Manage financial transactions")]
+[AllureLabel("UserStory", "#01")]
+[AllureSuite("HappyPaths")]
+[AllureSubSuite("CreateNaturalPayerTestsHappyPath")]
 public class CreateNaturalPayerTestsHappyPath : TestBaseSetup
 {
     public CreateNaturalPayerTestsHappyPath() : base(new MangoPayApi())
@@ -9,6 +11,8 @@ public class CreateNaturalPayerTestsHappyPath : TestBaseSetup
     }
 
     [Test]
+    [AllureLabel("AcceptanceCriteria", "AC01")]
+    [AllureLabel("TestCase", "TC01")]
     public async Task NaturalUserEndpoint_CreateUser_Successfully()
     {
         UserNaturalPayerPostDTO userNaturalPayerPostDto = UserFactory.CreateValidUser();
@@ -19,6 +23,8 @@ public class CreateNaturalPayerTestsHappyPath : TestBaseSetup
     }
     
     [Test]
+    [AllureLabel("AcceptanceCriteria", "AC01")]
+    [AllureLabel("TestCase", "TC02")]
     public async Task NaturalUserEndpoint_CreatedUserIsUnique_Successfully()
     {
         UserNaturalPayerPostDTO userNaturalPayerPostDto = UserFactory.CreateValidUser();

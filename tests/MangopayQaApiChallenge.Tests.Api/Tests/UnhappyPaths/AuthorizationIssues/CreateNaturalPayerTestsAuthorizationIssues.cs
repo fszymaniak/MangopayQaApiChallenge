@@ -1,7 +1,9 @@
 ﻿namespace MangopayQaApiChallenge.Tests.Api.Tests.UnhappyPaths.AuthorizationIssues;
 
-[TestFixture]
-[AllureNUnit]
+[AllureFeature("Manage financial transactions")]
+[AllureLabel("UserStory", "#01")]
+[AllureSuite("UnhappyPaths")]
+[AllureSubSuite("CreateNaturalPayerTestsAuthorizationIssues")]
 public class CreateNaturalPayerTestsAuthorizationIssues : TestBaseSetup
 {
     private UserNaturalPayerPostDTO _userNaturalPayerPostDto = null!;
@@ -17,6 +19,8 @@ public class CreateNaturalPayerTestsAuthorizationIssues : TestBaseSetup
     }
     
     [Test]
+    [AllureLabel("AcceptanceCriteria", "AC01")]
+    [AllureLabel("TestCase", "TC03")]
     public async Task NaturalUserEndpoint_TryToCreateUserWithInvalidClientId_Unauthorized()
     {
         UserNaturalDTO response = null!;
@@ -29,6 +33,8 @@ public class CreateNaturalPayerTestsAuthorizationIssues : TestBaseSetup
     }
     
     [Test]
+    [AllureLabel("AcceptanceCriteria", "AC01")]
+    [AllureLabel("TestCase", "TC04")]
     public async Task NaturalUserEndpoint_TryToCreateUserWithInvalidClientPassword_Unauthorized()
     {
         UserNaturalDTO response = null!;

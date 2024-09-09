@@ -10,3 +10,5 @@ global using MangopayQaApiChallenge.Tests.Api.Validators;
 global using Shouldly;
 global using MangoPay.SDK.Entities.GET;
 global using Allure.NUnit;
+global using Microsoft.Extensions.Configuration;
+global using Allure.NUnit.Attributes;

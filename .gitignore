@@ -473,5 +473,5 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 # Allure
-/tests/**/allure-report
-/tests/**/allure-results
+/tests/**/allure-report/*
+/tests/**/allure-results/*

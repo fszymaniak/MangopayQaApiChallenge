@@ -1,7 +1,9 @@
 ﻿namespace MangopayQaApiChallenge.Tests.Api.Tests.UnhappyPaths.AuthorizationIssues;
 
-[TestFixture]
-[AllureNUnit]
+[AllureFeature("Manage financial transactions")]
+[AllureLabel("UserStory", "#01")]
+[AllureSuite("UnhappyPaths")]
+[AllureSubSuite("CreateWalletTestsAuthorizationIssues")]
 public class CreateWalletTestsAuthorizationIssues : TestBaseSetup
 {
     private WalletPostDTO _walletRequestData = null!;
@@ -20,6 +22,8 @@ public class CreateWalletTestsAuthorizationIssues : TestBaseSetup
     }
     
     [Test]
+    [AllureLabel("AcceptanceCriteria", "AC02")]
+    [AllureLabel("TestCase", "TC03")]
     public async Task WalletEndpoint_TryToCreateWalletWithInvalidClientId_Unauthorized()
     {
         WalletDTO response = null!;
@@ -32,6 +36,8 @@ public class CreateWalletTestsAuthorizationIssues : TestBaseSetup
     }
     
     [Test]
+    [AllureLabel("AcceptanceCriteria", "AC02")]
+    [AllureLabel("TestCase", "TC04")]
     public async Task WalletEndpoint_TryToCreateWalletWithInvalidClientPassword_Unauthorized()
     {
         WalletDTO response = null!;
