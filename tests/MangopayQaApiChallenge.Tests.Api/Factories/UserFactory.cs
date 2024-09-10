@@ -1,10 +1,3 @@
-using MangoPay.SDK.Core.Enumerations;
-using MangoPay.SDK.Entities;
-using MangoPay.SDK.Entities.POST;
-using MangopayQaApiChallenge.Tests.Api.Constants;
-using MangopayQaApiChallenge.Tests.Api.Tools.Providers;
-using MangopayQaApiChallenge.Tests.Api.Tools.Randomizers;
-
 namespace MangopayQaApiChallenge.Tests.Api.Factories;
 
 public class UserFactory : IUserFactory
@@ -15,8 +8,8 @@ public class UserFactory : IUserFactory
 
     public UserFactory(IPathProvider pathProvider, IUserValuesRandomizer userValuesRandomizer)
     {
-        _pathProvider = new PathProvider();
-        _userValuesRandomizer = new UserValuesRandomizer();
+        _pathProvider = pathProvider;
+        _userValuesRandomizer = userValuesRandomizer;
     }
 
     public UserNaturalPayerPostDTO CreateValidUser()

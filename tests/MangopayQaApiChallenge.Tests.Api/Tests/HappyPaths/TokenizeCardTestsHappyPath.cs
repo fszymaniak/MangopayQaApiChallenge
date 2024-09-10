@@ -7,6 +7,8 @@ namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
 public class TokenizeCardTestsHappyPath : TestBaseSetup
 {
     private CardRegistrationDTO _cardRegistrationResponse = null!;
+    private UserPayerSteps _userSteps = new UserPayerSteps();
+    private CardSteps _cardSteps = new CardSteps();
     
     public TokenizeCardTestsHappyPath() : base(new MangoPayApi())
     {
@@ -15,10 +17,8 @@ public class TokenizeCardTestsHappyPath : TestBaseSetup
     [SetUp]
     public void SetUp()
     {
-        var userNaturalRequestData = UserFactory.CreateValidUser();
-        var userNaturalResponse = Api.Users.CreatePayerAsync(userNaturalRequestData).Result;
-        var cardRegistrationDto = CardFactory.CreateValidCard(userNaturalResponse.Id);
-        _cardRegistrationResponse = Api.CardRegistrations.CreateAsync(cardRegistrationDto).Result;
+        var userNaturalResponse = _userSteps.CreateUserViaPostApiCall(UserFactory, Api).Result;
+        _cardRegistrationResponse = _cardSteps.RegisterCardViaPostApiCall(userNaturalResponse.Id, CardFactory, Api).Result;
     }
     
     [Test]
@@ -26,9 +26,8 @@ public class TokenizeCardTestsHappyPath : TestBaseSetup
     [AllureLabel("TestCase", "TC01")]
     public async Task TokenizeCardEndpoint_TokenizeCard_Successfully()
     {
-        var tokenizeRequest = CardFactory.CreateValidTokenizeRequest(_cardRegistrationResponse);
-        var result =  await RestSharpDriver.SendPostRequestToTokenizeCard(tokenizeRequest);
-        var registrationData = result.Content;
+        var tokenizeResponse = await _cardSteps.TokenizeCardViaPostApiCall(_cardRegistrationResponse, CardFactory, RestSharpDriver);
+        var registrationData = tokenizeResponse!.Content;
         
         registrationData.ShouldNotBe(null);
         registrationData.ShouldStartWith("data=");

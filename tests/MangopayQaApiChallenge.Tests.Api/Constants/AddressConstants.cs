@@ -1,5 +1,3 @@
-using MangoPay.SDK.Core.Enumerations;
-
 namespace MangopayQaApiChallenge.Tests.Api.Constants;
 
 public static class AddressConstants

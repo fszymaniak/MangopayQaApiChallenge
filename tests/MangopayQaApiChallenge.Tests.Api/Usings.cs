@@ -13,3 +13,8 @@ global using Allure.NUnit;
 global using Microsoft.Extensions.Configuration;
 global using Allure.NUnit.Attributes;
 global using MangoPay.SDK.Core;
+global using MangoPay.SDK.Core.Enumerations;
+global using MangopayQaApiChallenge.Tests.Api.Drivers;
+global using NUnit.Framework.Interfaces;
+global using MangoPay.SDK.Entities;
+global using MangopayQaApiChallenge.Tests.Api.Steps;

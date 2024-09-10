@@ -6,8 +6,9 @@
 [AllureSubSuite("CreateWalletTestsHappyPath")]
 public class CreateWalletTestsHappyPath : TestBaseSetup
 {
-    private UserNaturalPayerPostDTO _userNaturalRequestData = null!;
     private UserNaturalDTO _userNaturalResponse = null!;
+    private readonly UserPayerSteps _userPayerSteps = new UserPayerSteps();
+    private readonly WalletSteps _walletSteps = new WalletSteps();
     
     public CreateWalletTestsHappyPath() : base(new MangoPayApi())
     {
@@ -16,9 +17,7 @@ public class CreateWalletTestsHappyPath : TestBaseSetup
     [SetUp]
     public void SetUp()
     {
-        _userNaturalRequestData = UserFactory.CreateValidUser();
-        _userNaturalResponse = Api.Users.CreatePayerAsync(_userNaturalRequestData).Result;
-
+        _userNaturalResponse = _userPayerSteps.CreateUserViaPostApiCall(UserFactory, Api).Result;
     }
     
     [Test]
@@ -27,9 +26,8 @@ public class CreateWalletTestsHappyPath : TestBaseSetup
     public async Task WalletEndpoint_CreateWallet_Successfully()
     {
         List<string> userIdsList = new List<string> { _userNaturalResponse.Id };
-        WalletPostDTO walletPostDto = WalletFactory.CreateValidWallet(userIdsList);
-        
-        var results = await Api.Wallets.CreateAsync(walletPostDto);
+
+        var results = await _walletSteps.CreateWalletViaPostApiCall(userIdsList, WalletFactory, Api);
         await StatusCodeValidator.ValidateStatusCode200Ok();
         IdValidator.ValidateId(results.Id, IdPrefixes.WalletIdPrefix);
     }

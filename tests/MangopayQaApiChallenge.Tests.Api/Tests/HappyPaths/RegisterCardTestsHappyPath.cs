@@ -6,8 +6,9 @@
 [AllureSubSuite("RegisterCardTestsHappyPath")]
 public class RegisterCardTestsHappyPath : TestBaseSetup
 {
-    private UserNaturalPayerPostDTO _userNaturalRequestData = null!;
     private UserNaturalDTO _userNaturalResponse = null!;
+    private readonly UserPayerSteps _userPayerSteps = new UserPayerSteps();
+    private readonly CardSteps _cardSteps = new CardSteps();
     
     public RegisterCardTestsHappyPath() : base(new MangoPayApi())
     {
@@ -16,9 +17,7 @@ public class RegisterCardTestsHappyPath : TestBaseSetup
     [SetUp]
     public void SetUp()
     {
-        _userNaturalRequestData = UserFactory.CreateValidUser();
-        _userNaturalResponse = Api.Users.CreatePayerAsync(_userNaturalRequestData).Result;
-
+        _userNaturalResponse = _userPayerSteps.CreateUserViaPostApiCall(UserFactory, Api).Result;
     }
     
     [Test]
@@ -26,9 +25,7 @@ public class RegisterCardTestsHappyPath : TestBaseSetup
     [AllureLabel("TestCase", "TC01")]
     public async Task CardRegistrationEndpoint_RegisterCard_Successfully()
     {
-        CardRegistrationPostDTO cardRegistrationDto = CardFactory.CreateValidCard(_userNaturalResponse.Id);
-        
-        var results = await Api.CardRegistrations.CreateAsync(cardRegistrationDto);
+        var results = await _cardSteps.RegisterCardViaPostApiCall(_userNaturalResponse.Id, CardFactory, Api);
         await StatusCodeValidator.ValidateStatusCode200Ok();
         IdValidator.ValidateId(results.Id, IdPrefixes.CardIdPrefix);
         results.Status.ShouldBe(CardStatus.CREATED.ToString());
@@ -39,14 +36,10 @@ public class RegisterCardTestsHappyPath : TestBaseSetup
     [AllureLabel("TestCase", "TC01")]
     public async Task CardRegistrationEndpoint_UpdateCard_Successfully()
     {
-        var cardRegistrationDto = CardFactory.CreateValidCard(_userNaturalResponse.Id);
-        var cardRegistrationResponse = Api.CardRegistrations.CreateAsync(cardRegistrationDto).Result;
-        var tokenizeRequest = CardFactory.CreateValidTokenizeRequest(cardRegistrationResponse);
-        var tokenizeResponse =  await RestSharpDriver.SendPostRequestToTokenizeCard(tokenizeRequest);
-        var registrationData = tokenizeResponse.Content;
-        var cardUpdateRequest = CardFactory.CreateValidCardUpdateRequest(registrationData!);
-        
-        var results = await Api.CardRegistrations.UpdateAsync(cardUpdateRequest, cardRegistrationResponse.Id);
+        var cardRegistrationResponse = await _cardSteps.RegisterCardViaPostApiCall(_userNaturalResponse.Id, CardFactory, Api);
+        var tokenizeResponse = await _cardSteps.TokenizeCardViaPostApiCall(cardRegistrationResponse, CardFactory, RestSharpDriver);
+        var registrationData = tokenizeResponse!.Content;
+        var results = await _cardSteps.UpdateRegisteredCardViaPutApiCall(registrationData!, cardRegistrationResponse.Id, CardFactory, Api);
         await StatusCodeValidator.ValidateStatusCode200Ok();
         results.RegistrationData.ShouldBe(registrationData);
         results.Status.ShouldBe(CardStatus.VALIDATED.ToString());
