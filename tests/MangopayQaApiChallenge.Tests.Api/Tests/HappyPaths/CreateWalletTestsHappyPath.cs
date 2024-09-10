@@ -1,7 +1,9 @@
 ﻿namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
 
-[TestFixture]
-[AllureNUnit]
+[AllureFeature("Manage financial transactions")]
+[AllureLabel("UserStory", "#01")]
+[AllureSuite("HappyPaths")]
+[AllureSubSuite("CreateWalletTestsHappyPath")]
 public class CreateWalletTestsHappyPath : TestBaseSetup
 {
     private UserNaturalPayerPostDTO _userNaturalRequestData = null!;
@@ -20,6 +22,8 @@ public class CreateWalletTestsHappyPath : TestBaseSetup
     }
     
     [Test]
+    [AllureLabel("AcceptanceCriteria", "AC02")]
+    [AllureLabel("TestCase", "TC01")]
     public async Task WalletEndpoint_CreateWallet_Successfully()
     {
         List<string> userIdsList = new List<string> { _userNaturalResponse.Id };
@@ -31,6 +35,8 @@ public class CreateWalletTestsHappyPath : TestBaseSetup
     }
     
     [Test]
+    [AllureLabel("AcceptanceCriteria", "AC02")]
+    [AllureLabel("TestCase", "TC01")]
     public async Task WalletEndpoint_CreatedWalletIsUnique_Successfully()
     {
         var userId = _userNaturalResponse.Id;

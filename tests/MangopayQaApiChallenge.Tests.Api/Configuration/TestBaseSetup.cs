@@ -1,8 +1,8 @@
-﻿using Allure.NUnit;
-using Microsoft.Extensions.Configuration;
+﻿
 
 namespace MangopayQaApiChallenge.Tests.Api.Configuration;
 
+[AllureNUnit]
 public class TestBaseSetup
 {
     protected readonly MangoPayApi Api;
