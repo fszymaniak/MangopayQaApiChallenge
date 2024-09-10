@@ -9,4 +9,6 @@ public class RandomFileNames
     public static string RandomStreetAddressTxt => "randomStreetAddress.txt";
     
     public static string RandomStreetNamesTxt => "randomStreetNames.txt";
+    
+    public static string RandomEmailsTxt => "randomEmails.txt";
 }

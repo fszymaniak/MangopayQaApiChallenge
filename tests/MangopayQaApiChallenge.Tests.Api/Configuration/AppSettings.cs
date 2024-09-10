@@ -2,6 +2,6 @@
 
 internal class AppSettings
 {
-    public string ClientId { get; set; }
-    public string ClientPassword { get; set; }
+    public string? ClientId { get; set; }
+    public string? ClientPassword { get; set; }
 }
