@@ -26,9 +26,11 @@ public class TokenizeCardTestsHappyPath : TestBaseSetup
     [AllureLabel("TestCase", "TC01")]
     public async Task TokenizeCardEndpoint_TokenizeCard_Successfully()
     {
+        // Given and when
         var tokenizeResponse = await _cardSteps.TokenizeCardViaPostApiCall(_cardRegistrationResponse, CardFactory, RestSharpDriver);
         var registrationData = tokenizeResponse!.Content;
         
+        // Then
         registrationData.ShouldNotBe(null);
         registrationData.ShouldStartWith("data=");
     }

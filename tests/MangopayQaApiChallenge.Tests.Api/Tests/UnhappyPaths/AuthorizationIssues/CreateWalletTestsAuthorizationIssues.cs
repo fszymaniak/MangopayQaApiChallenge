@@ -26,12 +26,15 @@ public class CreateWalletTestsAuthorizationIssues : TestBaseSetup
     [AllureLabel("TestCase", "TC03")]
     public async Task WalletEndpoint_TryToCreateWalletWithInvalidClientId_Unauthorized()
     {
+        // Given
         WalletDTO response = null!;
-
         Api.Config.ClientId = InvalidData.InvalidClientId;
-        response = await CallWalletEndpointWithInvalidCredentialsAndValidateResponse(response, _walletRequestData);
-        response.ShouldBe(null);
         
+        // When
+        response = await CallWalletEndpointWithInvalidCredentialsAndValidateResponse(response, _walletRequestData);
+        
+        // Then
+        response.ShouldBe(null);
         await StatusCodeValidator.ValidateStatusCode401Unauthorized();
     }
     
@@ -40,12 +43,15 @@ public class CreateWalletTestsAuthorizationIssues : TestBaseSetup
     [AllureLabel("TestCase", "TC04")]
     public async Task WalletEndpoint_TryToCreateWalletWithInvalidClientPassword_Unauthorized()
     {
+        // Given
         WalletDTO response = null!;
-
         Api.Config.ClientId = InvalidData.InvalidClientPassword;
-        response = await CallWalletEndpointWithInvalidCredentialsAndValidateResponse(response, _walletRequestData);
-        response.ShouldBe(null);
         
+        // When
+        response = await CallWalletEndpointWithInvalidCredentialsAndValidateResponse(response, _walletRequestData);
+        
+        // Then
+        response.ShouldBe(null);
         await StatusCodeValidator.ValidateStatusCode401Unauthorized();
     }
     

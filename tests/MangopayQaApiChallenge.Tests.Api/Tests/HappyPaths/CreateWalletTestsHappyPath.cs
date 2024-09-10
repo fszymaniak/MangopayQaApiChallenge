@@ -25,9 +25,13 @@ public class CreateWalletTestsHappyPath : TestBaseSetup
     [AllureLabel("TestCase", "TC01")]
     public async Task WalletEndpoint_CreateWallet_Successfully()
     {
+        // Given
         List<string> userIdsList = new List<string> { _userNaturalResponse.Id };
 
+        // When
         var results = await _walletSteps.CreateWalletViaPostApiCall(userIdsList, WalletFactory, Api);
+        
+        // Then
         await StatusCodeValidator.ValidateStatusCode200Ok();
         IdValidator.ValidateId(results.Id, IdPrefixes.WalletIdPrefix);
     }
@@ -37,13 +41,16 @@ public class CreateWalletTestsHappyPath : TestBaseSetup
     [AllureLabel("TestCase", "TC01")]
     public async Task WalletEndpoint_CreatedWalletIsUnique_Successfully()
     {
+        // Given
         var userId = _userNaturalResponse.Id;
         List<string> userIdsList = new List<string> { userId };
         WalletPostDTO walletPostDto = WalletFactory.CreateValidWallet(userIdsList);
         
+        // When
         var firstResults = await Api.Wallets.CreateAsync(walletPostDto);
         var secondResults = await Api.Wallets.CreateAsync(walletPostDto);
-        
+
+        // Then
         firstResults.Id.ShouldNotBe(secondResults.Id);
     }
 }

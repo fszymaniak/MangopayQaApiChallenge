@@ -33,10 +33,15 @@ public class PayInTestsHappyPath : TestBaseSetup
     [AllureLabel("TestCase", "TC01")]
     public async Task PayInEndpoint_MadePayIn_Successfully()
     {
+        // Given
         int debitedAmount = 10000;
         var directPayInRequest = PayInFactory.CreateValidDirectPayIn(_userNaturalResponse, _walletResponse,
             _cardRegistrationResponse, amount: debitedAmount, CurrencyIso.EUR);
+        
+        // When
         var results = await Api.PayIns.CreateCardDirectAsync(directPayInRequest);
+        
+        // Then
         await StatusCodeValidator.ValidateStatusCode200Ok();
         IdValidator.ValidateId(results.Id, IdPrefixes.PayInIdPrefix);
         results.Status.ShouldBe(TransactionStatus.CREATED);
