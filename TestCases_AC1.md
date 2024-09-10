@@ -27,8 +27,8 @@ Step 2: Send a request with an invalid API key to the /users/natural endpoint <b
 Step 3: Verify that the status code is 401 Unauthorized <br>
 Step 4: Verify that the new user id has not been returned <br>
 
-#### Test Case #05 Cannot create a new natural user due to missing first name
-Step 1: Create a new natural user data with a missing first name <br>
+#### Test Case #05 Cannot create a new natural user due to an invalid email
+Step 1: Create a new natural user data with an invalid email <br>
 Step 2: Send a request with valid credentials to the /users/natural endpoint <br>
 Step 3: Verify that the status code is 400 BadRequest <br>
 Step 4: Verify that the new user id has not been returned <br>
