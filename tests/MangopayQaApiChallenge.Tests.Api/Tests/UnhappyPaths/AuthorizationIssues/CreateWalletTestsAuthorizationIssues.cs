@@ -1,5 +1,7 @@
 ﻿namespace MangopayQaApiChallenge.Tests.Api.Tests.UnhappyPaths.AuthorizationIssues;
 
+[TestFixture]
+[AllureNUnit]
 public class CreateWalletTestsAuthorizationIssues : TestBaseSetup
 {
     private WalletPostDTO _walletRequestData = null!;

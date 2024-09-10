@@ -1,5 +1,7 @@
 ﻿namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
 
+[TestFixture]
+[AllureNUnit]
 public class CreateWalletTestsHappyPath : TestBaseSetup
 {
     private UserNaturalPayerPostDTO _userNaturalRequestData = null!;

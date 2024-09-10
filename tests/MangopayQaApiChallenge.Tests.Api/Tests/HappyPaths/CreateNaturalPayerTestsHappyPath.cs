@@ -1,5 +1,7 @@
 namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
 
+[TestFixture]
+[AllureNUnit]
 public class CreateNaturalPayerTestsHappyPath : TestBaseSetup
 {
     public CreateNaturalPayerTestsHappyPath() : base(new MangoPayApi())

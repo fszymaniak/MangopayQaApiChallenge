@@ -11,6 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Allure.NUnit" Version="2.12.1" />
         <PackageReference Include="Autofac" Version="6.5.0" />
         <PackageReference Include="Autofac.Configuration" Version="6.0.0" />
         <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
@@ -52,6 +53,9 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="Constants\Randoms\RandomEmails.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="allureConfig.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>

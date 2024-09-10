@@ -1,4 +1,4 @@
-﻿using MangoPay.SDK;
+﻿using Allure.NUnit;
 using Microsoft.Extensions.Configuration;
 
 namespace MangopayQaApiChallenge.Tests.Api.Configuration;
@@ -14,7 +14,6 @@ public class TestBaseSetup
     private readonly IUserValuesRandomizer _userValuesRandomizer;
     private readonly AppSettings _appSettings;
     
-
     public TestBaseSetup(MangoPayApi api)
     {
         var config = new ConfigurationBuilder()
