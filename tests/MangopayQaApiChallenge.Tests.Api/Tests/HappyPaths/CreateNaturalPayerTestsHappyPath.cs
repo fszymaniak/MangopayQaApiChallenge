@@ -13,14 +13,11 @@ public class CreateNaturalPayerTestsHappyPath : TestBaseSetup
         
         var results = await Api.Users.CreatePayerAsync(userNaturalPayerPostDto);
         await StatusCodeValidator.ValidateStatusCode200Ok();
-
-        var userId = results.Id;
-        userId.ShouldNotBe(null);
-        userId.ShouldContain("user_m_");
+        IdValidator.ValidateId(results.Id, IdPrefixes.UserIdPrefix);
     }
     
     [Test]
-    public async Task NaturalUserEndpoint_CreateUserIsUnique_Successfully()
+    public async Task NaturalUserEndpoint_CreatedUserIsUnique_Successfully()
     {
         UserNaturalPayerPostDTO userNaturalPayerPostDto = UserFactory.CreateValidUser();
         

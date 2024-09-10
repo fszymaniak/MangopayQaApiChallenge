@@ -1,6 +1,4 @@
-﻿using MangoPay.SDK.Entities.GET;
-
-namespace MangopayQaApiChallenge.Tests.Api.Tests.UnhappyPaths.AuthorizationIssues;
+﻿namespace MangopayQaApiChallenge.Tests.Api.Tests.UnhappyPaths.AuthorizationIssues;
 
 public class CreateNaturalPayerTestsAuthorizationIssues : TestBaseSetup
 {
@@ -54,5 +52,4 @@ public class CreateNaturalPayerTestsAuthorizationIssues : TestBaseSetup
 
         return response;
     }
-    
 }

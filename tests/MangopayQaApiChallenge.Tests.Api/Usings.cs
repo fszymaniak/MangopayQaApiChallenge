@@ -8,3 +8,4 @@ global using MangopayQaApiChallenge.Tests.Api.Tools.Providers;
 global using MangopayQaApiChallenge.Tests.Api.Tools.Randomizers;
 global using MangopayQaApiChallenge.Tests.Api.Validators;
 global using Shouldly;
+global using MangoPay.SDK.Entities.GET;
