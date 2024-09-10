@@ -48,7 +48,16 @@ Open your IDE, go to the command line and run:
 then
 `dotnet test`
 
-### Allure reports
+### Allure report tool
+#### Allure setup
+In order to view the Allure reports you have to install Java 8 or higher and set JAVA_HOME in the environmental variables. <br>
+After that, you have to install Allure Report command-line tool. <br>
+[Allure installation instructions](https://allurereport.org/docs/install/)
+
+For more information follow 
+https://allurereport.org/docs/nunit/#1-prepare-your-project
+
+#### Allure reports
 When the tests are finished then Allure reports are available in the following directory (as json formats)
 `\tests\MangopayQaApiChallenge.Tests.Api\bin\Debug\net6.0\allure-results`
 
@@ -67,4 +76,4 @@ As a result the local index.html web page with reports should be visible:
 - add E2E flow for the whole User Story
 - dockerize the project
 - setup CI pipeline
-- dependency injection for Nunit
+- dependency injection for NUnit framework
