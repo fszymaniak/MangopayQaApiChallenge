@@ -1,5 +1,9 @@
 namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
 
+[AllureFeature("Manage financial transactions")]
+[AllureLabel("UserStory", "#01")]
+[AllureSuite("HappyPaths")]
+[AllureSubSuite("TokenizeCardTestsHappyPath")]
 public class TokenizeCardTestsHappyPath : TestBaseSetup
 {
     private CardRegistrationDTO _cardRegistrationResponse = null!;
@@ -18,18 +22,15 @@ public class TokenizeCardTestsHappyPath : TestBaseSetup
     }
     
     [Test]
-    [AllureLabel("AcceptanceCriteria", "AC03")]
+    [AllureLabel("AcceptanceCriteria", "AC04")]
     [AllureLabel("TestCase", "TC01")]
     public async Task TokenizeCardEndpoint_TokenizeCard_Successfully()
     {
+        var tokenizeRequest = CardFactory.CreateValidTokenizeRequest(_cardRegistrationResponse);
+        var result =  await RestSharpDriver.SendPostRequestToTokenizeCard(tokenizeRequest);
+        var registrationData = result.Content;
         
-        CardRegistrationPostDTO cardRegistrationDto = CardFactory.CreateValidCard(_userNaturalResponse.Id);
-        
-        var results = await Api.CardRegistrations.CreateAsync(cardRegistrationDto);
-        await StatusCodeValidator.ValidateStatusCode200Ok();
-        IdValidator.ValidateId(results.Id, IdPrefixes.CardIdPrefix);
-        results.Status.ShouldBe(CardStatus.CREATED.ToString());
+        registrationData.ShouldNotBe(null);
+        registrationData.ShouldStartWith("data=");
     }
-    
-    
 }

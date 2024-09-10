@@ -33,4 +33,22 @@ public class RegisterCardTestsHappyPath : TestBaseSetup
         IdValidator.ValidateId(results.Id, IdPrefixes.CardIdPrefix);
         results.Status.ShouldBe(CardStatus.CREATED.ToString());
     }
+    
+    [Test]
+    [AllureLabel("AcceptanceCriteria", "AC05")]
+    [AllureLabel("TestCase", "TC01")]
+    public async Task CardRegistrationEndpoint_UpdateCard_Successfully()
+    {
+        var cardRegistrationDto = CardFactory.CreateValidCard(_userNaturalResponse.Id);
+        var cardRegistrationResponse = Api.CardRegistrations.CreateAsync(cardRegistrationDto).Result;
+        var tokenizeRequest = CardFactory.CreateValidTokenizeRequest(cardRegistrationResponse);
+        var tokenizeResponse =  await RestSharpDriver.SendPostRequestToTokenizeCard(tokenizeRequest);
+        var registrationData = tokenizeResponse.Content;
+        var cardUpdateRequest = CardFactory.CreateValidCardUpdateRequest(registrationData!);
+        
+        var results = await Api.CardRegistrations.UpdateAsync(cardUpdateRequest, cardRegistrationResponse.Id);
+        await StatusCodeValidator.ValidateStatusCode200Ok();
+        results.RegistrationData.ShouldBe(registrationData);
+        results.Status.ShouldBe(CardStatus.VALIDATED.ToString());
+    }
 }

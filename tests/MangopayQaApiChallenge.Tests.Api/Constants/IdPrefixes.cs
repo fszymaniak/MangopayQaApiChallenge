@@ -7,4 +7,6 @@ public static class IdPrefixes
     public static string WalletIdPrefix => "wlt_m_";
 
     public static string CardIdPrefix => "cardreg_m_";
+    
+    public static string PayInIdPrefix => "payin_m_";
 }

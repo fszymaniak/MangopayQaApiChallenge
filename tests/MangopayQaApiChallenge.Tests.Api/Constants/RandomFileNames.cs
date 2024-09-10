@@ -11,4 +11,6 @@ public class RandomFileNames
     public static string RandomStreetNamesTxt => "randomStreetNames.txt";
     
     public static string RandomEmailsTxt => "randomEmails.txt";
+
+    public static string RandomIpv6AddressesTxt => "randomIpv6Addresses.txt";
 }

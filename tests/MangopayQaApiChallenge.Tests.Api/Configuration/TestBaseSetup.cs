@@ -1,6 +1,7 @@
 ﻿
 
 using Allure.Net.Commons;
+using MangopayQaApiChallenge.Tests.Api.Drivers;
 using NUnit.Framework.Interfaces;
 
 namespace MangopayQaApiChallenge.Tests.Api.Configuration;
@@ -12,8 +13,10 @@ public class TestBaseSetup
     protected readonly IUserFactory UserFactory;
     protected readonly IWalletFactory WalletFactory;
     protected readonly ICardFactory CardFactory;
+    protected readonly IPayInFactory PayInFactory;
     protected readonly IStatusCodeValidator StatusCodeValidator;
     protected readonly IIdValidator IdValidator;
+    protected readonly IRestSharpDriver RestSharpDriver;
     private readonly IPathProvider _pathProvider;
     private readonly IUserValuesRandomizer _userValuesRandomizer;
     private readonly AppSettings _appSettings;
@@ -32,9 +35,10 @@ public class TestBaseSetup
         UserFactory = new UserFactory(_pathProvider, _userValuesRandomizer);
         WalletFactory = new WalletFactory();
         CardFactory = new CardFactory();
+        PayInFactory = new PayInFactory(_pathProvider, _userValuesRandomizer);
         StatusCodeValidator = new StatusCodeValidator(Api);
         IdValidator = new IdValidator();
-
+        RestSharpDriver = new RestSharpDriver();
     }
     
     [OneTimeSetUp]
