@@ -6,7 +6,12 @@ namespace MangopayQaApiChallenge.Tests.Api.Configuration;
 public class TestBaseSetup
 {
     protected readonly MangoPayApi Api;
+    protected readonly IUserFactory UserFactory;
+    protected readonly IStatusCodeValidator StatusCodeValidator;
+    private readonly IPathProvider _pathProvider;
+    private readonly IUserValuesRandomizer _userValuesRandomizer;
     private readonly AppSettings _appSettings;
+    
 
     public TestBaseSetup(MangoPayApi api)
     {
@@ -17,6 +22,11 @@ public class TestBaseSetup
 
         _appSettings = config.Get<AppSettings>()!;
         Api = api;
+        _pathProvider = new PathProvider();
+        _userValuesRandomizer = new UserValuesRandomizer();
+        UserFactory = new UserFactory(_pathProvider, _userValuesRandomizer);
+        StatusCodeValidator = new StatusCodeValidator(Api);
+
     }
     
     [OneTimeSetUp]

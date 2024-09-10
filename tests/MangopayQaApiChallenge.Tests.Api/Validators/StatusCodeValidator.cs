@@ -20,6 +20,12 @@ public class StatusCodeValidator : IStatusCodeValidator
         var lastRequestInfo = await GetLastRequestInfo();
         lastRequestInfo.Response.StatusCode.ShouldBe(HttpStatusCode.OK);
     }
+    
+    public async Task ValidateStatusCode401Unauthorized()
+    {
+        var lastRequestInfo = await GetLastRequestInfo();
+        lastRequestInfo.Response.StatusCode.ShouldBe(HttpStatusCode.Unauthorized);
+    }
 
     public async Task ValidateStatusCode400BadRequest()
     {
