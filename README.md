@@ -6,14 +6,14 @@ Test Cases files can be found in the [TestCases folder](https://github.com/fszym
 
 ## How to setup the tests
 
-### Create local repository
-Choose the local repository directory and open git bash or cmd.
-Please clone the repo using git clone command
+### Create a local repository
+Choose the local repository directory and open git bash or cmd. <br>
+Please clone the repo using the git clone command <br>
 `git clone https://github.com/fszymaniak/MangopayQaApiChallenge.git`
 
 ### Secrets
-In order to properly run the tests you have to provide cliend Id and client password (API key). 
-If you do not have there please check first prerequisites' bullet point in the [Postman Introduction page.](https://docs.mangopay.com/postman#introduction)
+To properly run the tests, you must provide the client ID and client password (API key). <br>
+If you do not have it, please check the bullet point for the first prerequisites on the [Postman Introduction page.](https://docs.mangopay.com/postman#introduction)
 
 If you have both valid credentials you can update them in the appsettings.json or override using secrets.json.
 
@@ -23,16 +23,17 @@ Go to the tests folder and in the [appsettings.json](https://github.com/fszymani
 
 ### Overriding secrets using secrets.json
 #### Visual Studio
-Click right on the MangopayQaApiChallenge.Tests.Api project then search for "Manage User Secrets" then secrets.json should open.
+Click right on the MangopayQaApiChallenge.Tests.Api project then searches for "Manage User Secrets" then secrets.json should open.
 
 #### Rider
 Click right on the MangopayQaApiChallenge.Tests.Api project then Tools then ".NET User Secrets"
 
 #### Secrets.json setup
-Secrets.json file has been created in your local folder outside the repository.
-In order to setup it properly you have to get full path of the file and retrive from it parent folder name which is in GUID format e.g. 54cb8fce-d12f-4191-a3c6-b150c45ebf9f
+The Secrets.json file has been created in your local folder outside the repository. <br>
+To set it up properly you have to get the full path of the file and retrieve it from its parent folder <br>
+name which is in GUID format e.g. 54cb8fce-d12f-4191-a3c6-b150c45ebf9f
 
-When you have this GUID foler name you have to update it in the [MangopayQaApiChallenge.Tests.Api.csproj](https://github.com/fszymaniak/MangopayQaApiChallenge/blob/main/tests/MangopayQaApiChallenge.Tests.Api/MangopayQaApiChallenge.Tests.Api.csproj) line: `<UserSecretsId>GUID_TO_UPDATE</UserSecretsId>`
+When you have this GUID folder name you have to update it in the [MangopayQaApiChallenge.Tests.Api.csproj](https://github.com/fszymaniak/MangopayQaApiChallenge/blob/main/tests/MangopayQaApiChallenge.Tests.Api/MangopayQaApiChallenge.Tests.Api.csproj) line: `<UserSecretsId>GUID_TO_UPDATE</UserSecretsId>`
 
 After that please copy appsettings.json into secrets.json and update the values to the valid ones.
 
@@ -50,24 +51,24 @@ then
 
 ### Allure report tool
 #### Allure setup
-In order to view the Allure reports you have to install Java 8 or higher and set JAVA_HOME in the environmental variables. <br>
-After that, you have to install Allure Report command-line tool. <br>
+To view the Allure reports you have to install Java 8 or higher and set JAVA_HOME in the environmental variables. <br>
+After that, you have to install the Allure Report command-line tool. <br>
 [Allure installation instructions](https://allurereport.org/docs/install/)
 
 For more information follow 
 https://allurereport.org/docs/nunit/#1-prepare-your-project
 
 #### Allure reports
-When the tests are finished then Allure reports are available in the following directory (as json formats)
+When the tests are finished then Allure reports are available in the following directory (in json formats)
 `\tests\MangopayQaApiChallenge.Tests.Api\bin\Debug\net6.0\allure-results`
 
-In order to view the html report you have to go to the .net6.0 folder
+To view the HTML report you have to go to the .net6.0 folder
 `\tests\MangopayQaApiChallenge.Tests.Api\bin\Debug\net6.0`
 then open cmd in this folder 
 and after that run
 `allure serve allure-results`
 
-As a result the local index.html web page with reports should be visible:
+As a result, the local index.html web page with reports should be visible:
 ![alt text](image.png)
 
 ### What can be added/improved
@@ -76,4 +77,7 @@ As a result the local index.html web page with reports should be visible:
 - add E2E flow for the whole User Story
 - dockerize the project
 - setup CI pipeline
-- dependency injection for NUnit framework
+- dependency injection for the NUnit framework
+
+### Approach to NFRs
+The approach to NFR testing can be found in the [NFRs_Testing_Approach.md](https://github.com/fszymaniak/MangopayQaApiChallenge/blob/main/NFRs_Testing_Approach.md)
