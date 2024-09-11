@@ -13,8 +13,8 @@ Find the equivalent number of people who will be working with the API then we sh
 - OWASP top 10 for API testing e.g.
 	- Unauthorized Access / Broken Access: 
 		- try to access the wallet for other users using my user credentials
-		- try to make a payin for another users
-	- Validate how the rate-limiting looks in the API, if a single user can run as many requests as he wants
+		- try to make a payin for another user
+	- Validate how the rate-limiting looks in the API if a single user can run as many requests as he wants
 - trying to make some requests with JavaScript injections
 
 ## Usability API testing
@@ -22,4 +22,4 @@ Find the equivalent number of people who will be working with the API then we sh
 - naming and endpoints should be easy to understand and self-documenting themselves
 - checking if the updated documentation exists
 - verify if the error handling and exceptions are meaningful
-- one thing should be achieved by one flow not multiple ones e.g. POST user, there should be one POST for the specific user multiple POST endpoints which saves similar data
+- one thing should be achieved by one flow, not multiple ones e.g. POST user, there should be one POST for the specific user multiple POST endpoints which saves similar data
