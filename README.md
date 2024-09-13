@@ -49,8 +49,8 @@ Open your IDE, go to the command line and run:
 then
 `dotnet test`
 
-### Allure report tool
-#### Allure setup
+## Allure report tool
+### Allure setup
 To view the Allure reports you have to install Java 8 or higher and set JAVA_HOME in the environmental variables. <br>
 After that, you have to install the Allure Report command-line tool. <br>
 [Allure installation instructions](https://allurereport.org/docs/install/)
@@ -58,7 +58,7 @@ After that, you have to install the Allure Report command-line tool. <br>
 For more information follow 
 https://allurereport.org/docs/nunit/#1-prepare-your-project
 
-#### Allure reports
+### Allure reports
 When the tests are finished then Allure reports are available in the following directory (in json formats)
 `\tests\MangopayQaApiChallenge.Tests.Api\bin\Debug\net6.0\allure-results`
 
@@ -71,7 +71,7 @@ and after that run
 As a result, the local index.html web page with reports should be visible:
 ![alt text](image.png)
 
-### What can be added/improved
+## What can be added/improved
 - adding logging
 - add some contract tests
 - add E2E flow for the whole User Story
@@ -79,5 +79,5 @@ As a result, the local index.html web page with reports should be visible:
 - setup CI pipeline
 - dependency injection for the NUnit framework
 
-### Approach to NFRs
+## Approach to NFRs
 The approach to NFR testing can be found in the [NFRs_Testing_Approach.md](https://github.com/fszymaniak/MangopayQaApiChallenge/blob/main/NFRs_Testing_Approach.md)
