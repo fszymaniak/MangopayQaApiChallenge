@@ -15,20 +15,24 @@ public class TestBaseSetup : FactoriesSetup
     private readonly AppSettings _appSettings;
     protected IContainer Container { get; private set; } = null!;
 
+    public TestBaseSetup() : this(new MangoPayApi())
+    {
+    }
+
     public TestBaseSetup(MangoPayApi api)
     {
         var config = new ConfigurationBuilder()
-            .AddJsonFile("appSettings.json", false)
+            .AddJsonFile(ConfigurationConstants.AppSettingsFileName, false)
             .AddUserSecrets<TestBaseSetup>()
             .Build();
 
-        _appSettings = config.Get<AppSettings>() ?? throw new InvalidOperationException("AppSettings configuration is missing or invalid.");
+        _appSettings = config.Get<AppSettings>() ?? throw new InvalidOperationException(ConfigurationConstants.AppSettingsMissingError);
 
         if (string.IsNullOrWhiteSpace(_appSettings.ClientId))
-            throw new InvalidOperationException("ClientId is required in configuration.");
+            throw new InvalidOperationException(ConfigurationConstants.ClientIdRequiredError);
 
         if (string.IsNullOrWhiteSpace(_appSettings.ClientPassword))
-            throw new InvalidOperationException("ClientPassword is required in configuration.");
+            throw new InvalidOperationException(ConfigurationConstants.ClientPasswordRequiredError);
 
         Api = api;
 

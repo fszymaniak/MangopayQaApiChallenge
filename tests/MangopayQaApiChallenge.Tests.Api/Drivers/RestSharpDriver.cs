@@ -7,7 +7,7 @@ public class RestSharpDriver : IRestSharpDriver
 {
     private readonly IRequestDetailsProvider _requestDetailsProvider = new RequestDetailsProvider();
 
-    public async Task<RestResponse> SendPostRequestToTokenizeCard(TokenizeRequestDto tokenizeRequestDto)
+    public async Task<RestResponse> SendPostRequestToTokenizeCardAsync(TokenizeRequestDto tokenizeRequestDto)
     {
         var client = new RestClient(_requestDetailsProvider.GetUrl(tokenizeRequestDto.Url));
         var request = new RestRequest(_requestDetailsProvider.GetEndpoint(tokenizeRequestDto.Url), Method.Post);

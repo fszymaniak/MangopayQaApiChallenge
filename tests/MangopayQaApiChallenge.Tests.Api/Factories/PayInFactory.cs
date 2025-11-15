@@ -8,8 +8,8 @@ public class PayInFactory : IPayInFactory
 
     public PayInFactory(IPathProvider pathProvider, IUserValuesRandomizer userValuesRandomizer)
     {
-        _pathProvider = new PathProvider();
-        _userValuesRandomizer = new UserValuesRandomizer();
+        _pathProvider = pathProvider;
+        _userValuesRandomizer = userValuesRandomizer;
     }
     
     public PayInCardDirectPostDTO CreateValidDirectPayIn(UserNaturalDTO userNatural, WalletDTO wallet,
@@ -23,7 +23,7 @@ public class PayInFactory : IPayInFactory
 
         var fees = new Money
         {
-            Amount = 100,
+            Amount = PayInConstants.DefaultFeeAmount,
             Currency = currency
         };
 

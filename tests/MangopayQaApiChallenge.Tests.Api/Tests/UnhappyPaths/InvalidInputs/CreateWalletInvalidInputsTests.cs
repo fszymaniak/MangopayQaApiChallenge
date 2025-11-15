@@ -6,10 +6,6 @@
 [AllureSubSuite("CreateWalletInvalidInputsTests")]
 public class CreateWalletInvalidInputsTests : TestBaseSetup
 {
-    public CreateWalletInvalidInputsTests() : base(new MangoPayApi())
-    {
-    }
-    
     [Test]
     [AllureLabel("AcceptanceCriteria", "AC02")]
     [AllureLabel("TestCase", "TC05")]
@@ -17,10 +13,10 @@ public class CreateWalletInvalidInputsTests : TestBaseSetup
     {
         // Given
         WalletDTO response = null!;
-        var notExistingUserId = "notExistingUserId";
+        var notExistingUserId = InvalidData.NotExistingUserId;
         List<string> userIdsList = new List<string> { notExistingUserId };
         var walletRequestData = WalletFactory.CreateValidWallet(userIdsList);
-        
+
         // When
         try
         {
@@ -29,9 +25,9 @@ public class CreateWalletInvalidInputsTests : TestBaseSetup
         catch (Exception exception)
         {
             exception.GetType().ShouldBe(typeof(ResponseException));
-            exception.Message.ShouldContain($"The value {notExistingUserId} is not valid");
+            exception.Message.ShouldContain(string.Format(ErrorMessages.ValueNotValidErrorTemplate, notExistingUserId));
         }
-        
+
         // Then
         response.ShouldBe(null);
         await StatusCodeValidator.ValidateStatusCode400BadRequestAsync();

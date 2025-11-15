@@ -9,7 +9,7 @@ public class WalletFactory : IWalletFactory
         return new WalletPostDTO
         (
             walletOwners,
-            "E-Money wallet",
+            WalletConstants.DefaultDescription,
             CurrencyIso.EUR
         );
 

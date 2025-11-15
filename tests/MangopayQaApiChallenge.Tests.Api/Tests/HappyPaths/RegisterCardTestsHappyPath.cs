@@ -8,10 +8,6 @@ public class RegisterCardTestsHappyPath : TestBaseSetup
 {
     private UserNaturalDTO _userNaturalResponse = null!;
 
-    public RegisterCardTestsHappyPath() : base(new MangoPayApi())
-    {
-    }
-
     [SetUp]
     public async Task SetUp()
     {

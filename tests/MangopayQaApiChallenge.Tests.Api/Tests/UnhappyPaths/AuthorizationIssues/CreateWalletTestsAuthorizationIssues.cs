@@ -7,11 +7,7 @@
 public class CreateWalletTestsAuthorizationIssues : TestBaseSetup
 {
     private WalletPostDTO _walletRequestData = null!;
-    
-    public CreateWalletTestsAuthorizationIssues() : base(new MangoPayApi())
-    {
-    }
-    
+
     [SetUp]
     public async Task SetUp()
     {
@@ -64,7 +60,7 @@ public class CreateWalletTestsAuthorizationIssues : TestBaseSetup
         catch (Exception exception)
         {
             exception.GetType().ShouldBe(typeof(UnauthorizedAccessException));
-            exception.Message.ShouldContain("invalid_client");
+            exception.Message.ShouldContain(ErrorMessages.InvalidClientError);
         }
 
         return response;

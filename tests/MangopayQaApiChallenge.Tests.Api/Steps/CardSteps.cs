@@ -14,7 +14,7 @@ public class CardSteps
     public async Task<RestResponse?> TokenizeCardViaPostApiCallAsync(CardRegistrationDTO cardRegistrationResponse, ICardFactory cardFactory, IRestSharpDriver restSharpDriver)
     {
         var tokenizeRequest = cardFactory.CreateValidTokenizeRequest(cardRegistrationResponse);
-        var tokenizeResponse = await restSharpDriver.SendPostRequestToTokenizeCard(tokenizeRequest);
+        var tokenizeResponse = await restSharpDriver.SendPostRequestToTokenizeCardAsync(tokenizeRequest);
         return tokenizeResponse;
     }
 

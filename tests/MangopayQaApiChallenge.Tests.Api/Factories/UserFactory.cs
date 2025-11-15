@@ -30,7 +30,7 @@ public class UserFactory : IUserFactory
             },
             UserCategory = UserCategory.PAYER,
             TermsAndConditionsAccepted = true,
-            Tag = "Created using automated tests QA Challenge"
+            Tag = TestDataConstants.UserTag
         };
     }
 
