@@ -1,14 +1,16 @@
-﻿namespace MangopayQaApiChallenge.Tests.Api.Tests.UnhappyPaths.InvalidInputs;
+using MangopayQaApiChallenge.Tests.Api.Constants;
 
-[AllureFeature("Manage financial transactions")]
-[AllureLabel("UserStory", "#01")]
-[AllureSuite("UnhappyPaths")]
+namespace MangopayQaApiChallenge.Tests.Api.Tests.UnhappyPaths.InvalidInputs;
+
+[AllureFeature(AllureMetadata.DefaultFeature)]
+[AllureLabel(AllureMetadata.Labels.UserStory, AllureMetadata.DefaultUserStory)]
+[AllureSuite(AllureMetadata.Suites.UnhappyPaths)]
 [AllureSubSuite("CreateUserInvalidInputsTests")]
 public class CreateUserInvalidInputsTests : TestBaseSetup
 {
     [Test]
-    [AllureLabel("AcceptanceCriteria", "AC02")]
-    [AllureLabel("TestCase", "TC05")]
+    [AllureLabel(AllureMetadata.Labels.AcceptanceCriteria, AllureMetadata.AcceptanceCriteria.AC02)]
+    [AllureLabel(AllureMetadata.Labels.TestCase, AllureMetadata.TestCase.TC05)]
     public async Task UserEndpoint_TryToCreateUserWithInvalidEmail_BadRequest()
     {
         // Given

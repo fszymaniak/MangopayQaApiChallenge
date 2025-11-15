@@ -1,8 +1,10 @@
-﻿namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
+using MangopayQaApiChallenge.Tests.Api.Constants;
 
-[AllureFeature("Manage financial transactions")]
-[AllureLabel("UserStory", "#01")]
-[AllureSuite("HappyPaths")]
+namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
+
+[AllureFeature(AllureMetadata.DefaultFeature)]
+[AllureLabel(AllureMetadata.Labels.UserStory, AllureMetadata.DefaultUserStory)]
+[AllureSuite(AllureMetadata.Suites.HappyPaths)]
 [AllureSubSuite("RegisterCardTestsHappyPath")]
 public class RegisterCardTestsHappyPath : TestBaseSetup
 {
@@ -15,8 +17,8 @@ public class RegisterCardTestsHappyPath : TestBaseSetup
     }
 
     [Test]
-    [AllureLabel("AcceptanceCriteria", "AC03")]
-    [AllureLabel("TestCase", "TC01")]
+    [AllureLabel(AllureMetadata.Labels.AcceptanceCriteria, AllureMetadata.AcceptanceCriteria.AC03)]
+    [AllureLabel(AllureMetadata.Labels.TestCase, AllureMetadata.TestCase.TC01)]
     public async Task CardRegistrationEndpoint_RegisterCard_Successfully()
     {
         // Given and When
@@ -29,8 +31,8 @@ public class RegisterCardTestsHappyPath : TestBaseSetup
     }
 
     [Test]
-    [AllureLabel("AcceptanceCriteria", "AC05")]
-    [AllureLabel("TestCase", "TC01")]
+    [AllureLabel(AllureMetadata.Labels.AcceptanceCriteria, AllureMetadata.AcceptanceCriteria.AC05)]
+    [AllureLabel(AllureMetadata.Labels.TestCase, AllureMetadata.TestCase.TC01)]
     public async Task CardRegistrationEndpoint_UpdateCard_Successfully()
     {
         // Given

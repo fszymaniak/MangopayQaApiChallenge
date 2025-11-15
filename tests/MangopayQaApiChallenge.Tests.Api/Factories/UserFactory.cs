@@ -2,13 +2,11 @@ namespace MangopayQaApiChallenge.Tests.Api.Factories;
 
 public class UserFactory : IUserFactory
 {
-    private readonly IPathProvider _pathProvider;
     private readonly IUserValuesRandomizer _userValuesRandomizer;
     private readonly string _randomFilesDirectory = FilesDirectories.RandomDirectory;
 
-    public UserFactory(IPathProvider pathProvider, IUserValuesRandomizer userValuesRandomizer)
+    public UserFactory(IUserValuesRandomizer userValuesRandomizer)
     {
-        _pathProvider = pathProvider;
         _userValuesRandomizer = userValuesRandomizer;
     }
 
@@ -16,13 +14,13 @@ public class UserFactory : IUserFactory
     {
         return new UserNaturalPayerPostDTO
         {
-            FirstName = _userValuesRandomizer.GetRandomValueFromTxtFile(GetPath(RandomFileNames.RandomFirstNamesTxt)),
-            LastName = _userValuesRandomizer.GetRandomValueFromTxtFile(GetPath(RandomFileNames.RandomLastNamesTxt)),
-            Email = _userValuesRandomizer.GetRandomValueFromTxtFile(GetPath(RandomFileNames.RandomEmailsTxt)),
+            FirstName = _userValuesRandomizer.GetRandomValueFromTxtFile(Path.Combine(_randomFilesDirectory, RandomFileNames.RandomFirstNamesTxt)),
+            LastName = _userValuesRandomizer.GetRandomValueFromTxtFile(Path.Combine(_randomFilesDirectory, RandomFileNames.RandomLastNamesTxt)),
+            Email = _userValuesRandomizer.GetRandomValueFromTxtFile(Path.Combine(_randomFilesDirectory, RandomFileNames.RandomEmailsTxt)),
             Address = new Address
             {
-                AddressLine1 = _userValuesRandomizer.GetRandomValueFromTxtFile(GetPath(RandomFileNames.RandomStreetAddressTxt)),
-                AddressLine2 = _userValuesRandomizer.GetRandomValueFromTxtFile(GetPath(RandomFileNames.RandomStreetNamesTxt)),
+                AddressLine1 = _userValuesRandomizer.GetRandomValueFromTxtFile(Path.Combine(_randomFilesDirectory, RandomFileNames.RandomStreetAddressTxt)),
+                AddressLine2 = _userValuesRandomizer.GetRandomValueFromTxtFile(Path.Combine(_randomFilesDirectory, RandomFileNames.RandomStreetNamesTxt)),
                 City =  AddressConstants.City,
                 Region = AddressConstants.Region,
                 PostalCode = AddressConstants.PostalCode,
@@ -32,10 +30,5 @@ public class UserFactory : IUserFactory
             TermsAndConditionsAccepted = true,
             Tag = TestDataConstants.UserTag
         };
-    }
-
-    private string GetPath(string fileName)
-    {
-        return _pathProvider.GetFilePath(_randomFilesDirectory, fileName);
     }
 }

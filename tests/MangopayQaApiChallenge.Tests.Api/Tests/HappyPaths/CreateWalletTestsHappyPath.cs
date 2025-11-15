@@ -1,8 +1,10 @@
-﻿namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
+using MangopayQaApiChallenge.Tests.Api.Constants;
 
-[AllureFeature("Manage financial transactions")]
-[AllureLabel("UserStory", "#01")]
-[AllureSuite("HappyPaths")]
+namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
+
+[AllureFeature(AllureMetadata.DefaultFeature)]
+[AllureLabel(AllureMetadata.Labels.UserStory, AllureMetadata.DefaultUserStory)]
+[AllureSuite(AllureMetadata.Suites.HappyPaths)]
 [AllureSubSuite("CreateWalletTestsHappyPath")]
 public class CreateWalletTestsHappyPath : TestBaseSetup
 {
@@ -15,8 +17,8 @@ public class CreateWalletTestsHappyPath : TestBaseSetup
     }
 
     [Test]
-    [AllureLabel("AcceptanceCriteria", "AC02")]
-    [AllureLabel("TestCase", "TC01")]
+    [AllureLabel(AllureMetadata.Labels.AcceptanceCriteria, AllureMetadata.AcceptanceCriteria.AC02)]
+    [AllureLabel(AllureMetadata.Labels.TestCase, AllureMetadata.TestCase.TC01)]
     public async Task WalletEndpoint_CreateWallet_Successfully()
     {
         // Given
@@ -29,10 +31,10 @@ public class CreateWalletTestsHappyPath : TestBaseSetup
         await StatusCodeValidator.ValidateStatusCode200OkAsync();
         IdValidator.ValidateId(results.Id, IdPrefixes.WalletIdPrefix);
     }
-    
+
     [Test]
-    [AllureLabel("AcceptanceCriteria", "AC02")]
-    [AllureLabel("TestCase", "TC01")]
+    [AllureLabel(AllureMetadata.Labels.AcceptanceCriteria, AllureMetadata.AcceptanceCriteria.AC02)]
+    [AllureLabel(AllureMetadata.Labels.TestCase, AllureMetadata.TestCase.TC01)]
     public async Task WalletEndpoint_CreatedWalletIsUnique_Successfully()
     {
         // Given
