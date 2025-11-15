@@ -1,4 +1,5 @@
 using Autofac;
+using MangopayQaApiChallenge.Tests.Api.Logging;
 
 namespace MangopayQaApiChallenge.Tests.Api.Configuration;
 
@@ -59,17 +60,27 @@ public class TestBaseSetup : FactoriesSetup
     [OneTimeSetUp]
     public void Setup()
     {
+        TestLogger.TestSetup("Configuring API credentials");
         Api.Config.ClientId = _appSettings.ClientId;
         Api.Config.ClientPassword = _appSettings.ClientPassword;
+        TestLogger.TestSetup("API configuration completed");
     }
 
     [TearDown]
     public void TearDown()
     {
-        if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+        var testName = TestContext.CurrentContext.Test.Name;
+        var outcome = TestContext.CurrentContext.Result.Outcome;
+
+        if (outcome != ResultState.Success)
         {
+            TestLogger.TestTearDown($"Test '{testName}' failed with outcome: {outcome}");
             // here you can add your screen shot
             // AllureApi.AddScreenDiff("expected.png", "actual.png", "diff.png");
+        }
+        else
+        {
+            TestLogger.TestTearDown($"Test '{testName}' completed successfully");
         }
     }
 }

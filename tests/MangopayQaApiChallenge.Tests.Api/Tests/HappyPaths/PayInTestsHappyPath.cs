@@ -1,8 +1,10 @@
-﻿namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
+using MangopayQaApiChallenge.Tests.Api.Constants;
 
-[AllureFeature("Manage financial transactions")]
-[AllureLabel("UserStory", "#01")]
-[AllureSuite("HappyPaths")]
+namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
+
+[AllureFeature(AllureMetadata.DefaultFeature)]
+[AllureLabel(AllureMetadata.Labels.UserStory, AllureMetadata.DefaultUserStory)]
+[AllureSuite(AllureMetadata.Suites.HappyPaths)]
 [AllureSubSuite("PayInTestsHappyPath")]
 public class PayInTestsHappyPath : TestBaseSetup
 {
@@ -22,8 +24,8 @@ public class PayInTestsHappyPath : TestBaseSetup
     }
 
     [Test]
-    [AllureLabel("AcceptanceCriteria", "AC03")]
-    [AllureLabel("TestCase", "TC01")]
+    [AllureLabel(AllureMetadata.Labels.AcceptanceCriteria, AllureMetadata.AcceptanceCriteria.AC03)]
+    [AllureLabel(AllureMetadata.Labels.TestCase, AllureMetadata.TestCase.TC01)]
     public async Task PayInEndpoint_MadePayIn_Successfully()
     {
         // Given

@@ -2,13 +2,11 @@ namespace MangopayQaApiChallenge.Tests.Api.Factories;
 
 public class PayInFactory : IPayInFactory
 {
-    private readonly IPathProvider _pathProvider;
     private readonly IUserValuesRandomizer _userValuesRandomizer;
     private readonly string _randomFilesDirectory = FilesDirectories.RandomDirectory;
 
-    public PayInFactory(IPathProvider pathProvider, IUserValuesRandomizer userValuesRandomizer)
+    public PayInFactory(IUserValuesRandomizer userValuesRandomizer)
     {
-        _pathProvider = pathProvider;
         _userValuesRandomizer = userValuesRandomizer;
     }
     
@@ -62,13 +60,8 @@ public class PayInFactory : IPayInFactory
         );
 
         payInCardDirectPostDTO.IpAddress =
-            _userValuesRandomizer.GetRandomValueFromTxtFile(GetPath(RandomFileNames.RandomIpv6AddressesTxt));
+            _userValuesRandomizer.GetRandomValueFromTxtFile(Path.Combine(_randomFilesDirectory, RandomFileNames.RandomIpv6AddressesTxt));
 
         return payInCardDirectPostDTO;
-    }
-    
-    private string GetPath(string fileName)
-    {
-        return _pathProvider.GetFilePath(_randomFilesDirectory, fileName);
     }
 }

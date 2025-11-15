@@ -1,8 +1,10 @@
-﻿namespace MangopayQaApiChallenge.Tests.Api.Tests.UnhappyPaths.AuthorizationIssues;
+using MangopayQaApiChallenge.Tests.Api.Constants;
 
-[AllureFeature("Manage financial transactions")]
-[AllureLabel("UserStory", "#01")]
-[AllureSuite("UnhappyPaths")]
+namespace MangopayQaApiChallenge.Tests.Api.Tests.UnhappyPaths.AuthorizationIssues;
+
+[AllureFeature(AllureMetadata.DefaultFeature)]
+[AllureLabel(AllureMetadata.Labels.UserStory, AllureMetadata.DefaultUserStory)]
+[AllureSuite(AllureMetadata.Suites.UnhappyPaths)]
 [AllureSubSuite("CreateWalletTestsAuthorizationIssues")]
 public class CreateWalletTestsAuthorizationIssues : TestBaseSetup
 {
@@ -16,27 +18,27 @@ public class CreateWalletTestsAuthorizationIssues : TestBaseSetup
         List<string> userIdsList = new List<string> { userNaturalResponse.Id };
         _walletRequestData = WalletFactory.CreateValidWallet(userIdsList);
     }
-    
+
     [Test]
-    [AllureLabel("AcceptanceCriteria", "AC02")]
-    [AllureLabel("TestCase", "TC03")]
+    [AllureLabel(AllureMetadata.Labels.AcceptanceCriteria, AllureMetadata.AcceptanceCriteria.AC02)]
+    [AllureLabel(AllureMetadata.Labels.TestCase, AllureMetadata.TestCase.TC03)]
     public async Task WalletEndpoint_TryToCreateWalletWithInvalidClientId_Unauthorized()
     {
         // Given
         WalletDTO response = null!;
         Api.Config.ClientId = InvalidData.InvalidClientId;
-        
+
         // When
         response = await CallWalletEndpointWithInvalidCredentialsAndValidateResponse(response, _walletRequestData);
-        
+
         // Then
         response.ShouldBe(null);
         await StatusCodeValidator.ValidateStatusCode401UnauthorizedAsync();
     }
 
     [Test]
-    [AllureLabel("AcceptanceCriteria", "AC02")]
-    [AllureLabel("TestCase", "TC04")]
+    [AllureLabel(AllureMetadata.Labels.AcceptanceCriteria, AllureMetadata.AcceptanceCriteria.AC02)]
+    [AllureLabel(AllureMetadata.Labels.TestCase, AllureMetadata.TestCase.TC04)]
     public async Task WalletEndpoint_TryToCreateWalletWithInvalidClientPassword_Unauthorized()
     {
         // Given

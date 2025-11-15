@@ -1,3 +1,4 @@
+using MangopayQaApiChallenge.Tests.Api.Logging;
 using MangopayQaApiChallenge.Tests.Api.Models;
 using RestSharp;
 
@@ -9,8 +10,13 @@ public class RestSharpDriver : IRestSharpDriver
 
     public async Task<RestResponse> SendPostRequestToTokenizeCardAsync(TokenizeRequestDto tokenizeRequestDto)
     {
-        var client = new RestClient(_requestDetailsProvider.GetUrl(tokenizeRequestDto.Url));
-        var request = new RestRequest(_requestDetailsProvider.GetEndpoint(tokenizeRequestDto.Url), Method.Post);
+        var url = _requestDetailsProvider.GetUrl(tokenizeRequestDto.Url);
+        var endpoint = _requestDetailsProvider.GetEndpoint(tokenizeRequestDto.Url);
+
+        TestLogger.ApiRequest("POST", $"{url}{endpoint}");
+
+        var client = new RestClient(url);
+        var request = new RestRequest(endpoint, Method.Post);
 
         request.AddHeader(HeaderConstants.Name, HeaderConstants.XwwwFormUrlencodedValue);
 
@@ -25,6 +31,9 @@ public class RestSharpDriver : IRestSharpDriver
             ParameterType.GetOrPost);
 
         var results = await client.ExecuteAsync(request);
+
+        TestLogger.ApiResponse("POST", $"{url}{endpoint}", (int)results.StatusCode);
+
         return results;
     }
 }

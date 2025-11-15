@@ -2,6 +2,7 @@ using System.Net;
 using MangoPay.SDK;
 using MangoPay.SDK.Core;
 using MangopayQaApiChallenge.Tests.Api.Exceptions;
+using MangopayQaApiChallenge.Tests.Api.Logging;
 using Shouldly;
 
 namespace MangopayQaApiChallenge.Tests.Api.Validators;
@@ -18,7 +19,14 @@ public class StatusCodeValidator : IStatusCodeValidator
     public Task ValidateStatusCodeAsync(HttpStatusCode expectedStatusCode)
     {
         var lastRequestInfo = GetLastRequestInfo();
-        lastRequestInfo.Response.StatusCode.ShouldBe(expectedStatusCode);
+        var actualStatusCode = lastRequestInfo.Response.StatusCode;
+
+        TestLogger.Debug($"Validating status code - Expected: {expectedStatusCode} ({(int)expectedStatusCode}), Actual: {actualStatusCode} ({(int)actualStatusCode})");
+
+        actualStatusCode.ShouldBe(expectedStatusCode);
+
+        TestLogger.Info($"Status code validation passed: {actualStatusCode}");
+
         return Task.CompletedTask;
     }
 

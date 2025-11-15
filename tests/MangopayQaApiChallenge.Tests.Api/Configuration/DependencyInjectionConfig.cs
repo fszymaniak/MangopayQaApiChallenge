@@ -31,7 +31,6 @@ public class DependencyInjectionConfig
         builder.RegisterType<RestSharpDriver>().As<IRestSharpDriver>().SingleInstance();
 
         // Register Providers
-        builder.RegisterType<PathProvider>().As<IPathProvider>().SingleInstance();
         builder.RegisterType<RequestDetailsProvider>().As<IRequestDetailsProvider>().SingleInstance();
 
         // Register Randomizers

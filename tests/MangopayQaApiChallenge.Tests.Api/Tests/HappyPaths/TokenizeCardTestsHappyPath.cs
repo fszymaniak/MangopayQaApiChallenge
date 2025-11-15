@@ -1,8 +1,10 @@
+using MangopayQaApiChallenge.Tests.Api.Constants;
+
 namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
 
-[AllureFeature("Manage financial transactions")]
-[AllureLabel("UserStory", "#01")]
-[AllureSuite("HappyPaths")]
+[AllureFeature(AllureMetadata.DefaultFeature)]
+[AllureLabel(AllureMetadata.Labels.UserStory, AllureMetadata.DefaultUserStory)]
+[AllureSuite(AllureMetadata.Suites.HappyPaths)]
 [AllureSubSuite("TokenizeCardTestsHappyPath")]
 public class TokenizeCardTestsHappyPath : TestBaseSetup
 {
@@ -16,8 +18,8 @@ public class TokenizeCardTestsHappyPath : TestBaseSetup
     }
 
     [Test]
-    [AllureLabel("AcceptanceCriteria", "AC04")]
-    [AllureLabel("TestCase", "TC01")]
+    [AllureLabel(AllureMetadata.Labels.AcceptanceCriteria, AllureMetadata.AcceptanceCriteria.AC04)]
+    [AllureLabel(AllureMetadata.Labels.TestCase, AllureMetadata.TestCase.TC01)]
     public async Task TokenizeCardEndpoint_TokenizeCard_Successfully()
     {
         // Given and when
