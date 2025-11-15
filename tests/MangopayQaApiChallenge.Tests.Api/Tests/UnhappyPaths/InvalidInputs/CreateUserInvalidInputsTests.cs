@@ -34,6 +34,6 @@ public class CreateUserInvalidInputsTests : TestBaseSetup
         
         // Then
         response.ShouldBe(null);
-        await StatusCodeValidator.ValidateStatusCode400BadRequest();
+        await StatusCodeValidator.ValidateStatusCode400BadRequestAsync();
     }
 }

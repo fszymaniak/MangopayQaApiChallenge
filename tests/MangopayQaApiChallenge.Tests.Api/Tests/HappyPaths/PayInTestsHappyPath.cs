@@ -17,14 +17,14 @@ public class PayInTestsHappyPath : TestBaseSetup
     [SetUp]
     public async Task SetUp()
     {
-        _userNaturalResponse = await UserPayerSteps.CreateUserViaPostApiCall(UserFactory, Api);
-        _walletResponse = await WalletSteps.CreateWalletViaPostApiCall(new List<string>() { _userNaturalResponse.Id }, WalletFactory, Api);
-        var cardRegistrationResponse = await CardSteps.RegisterCardViaPostApiCall(_userNaturalResponse.Id, CardFactory, Api);
-        var tokenizeResponse = await CardSteps.TokenizeCardViaPostApiCall(cardRegistrationResponse, CardFactory, RestSharpDriver);
+        _userNaturalResponse = await UserPayerSteps.CreateUserViaPostApiCallAsync(UserFactory, Api);
+        _walletResponse = await WalletSteps.CreateWalletViaPostApiCallAsync(new List<string>() { _userNaturalResponse.Id }, WalletFactory, Api);
+        var cardRegistrationResponse = await CardSteps.RegisterCardViaPostApiCallAsync(_userNaturalResponse.Id, CardFactory, Api);
+        var tokenizeResponse = await CardSteps.TokenizeCardViaPostApiCallAsync(cardRegistrationResponse, CardFactory, RestSharpDriver);
         var registrationData = tokenizeResponse!.Content;
-        _cardRegistrationResponse = await CardSteps.UpdateRegisteredCardViaPutApiCall(registrationData!, cardRegistrationResponse.Id, CardFactory, Api);
+        _cardRegistrationResponse = await CardSteps.UpdateRegisteredCardViaPutApiCallAsync(registrationData!, cardRegistrationResponse.Id, CardFactory, Api);
     }
-    
+
     [Test]
     [AllureLabel("AcceptanceCriteria", "AC03")]
     [AllureLabel("TestCase", "TC01")]
@@ -34,12 +34,12 @@ public class PayInTestsHappyPath : TestBaseSetup
         int debitedAmount = 10000;
         var directPayInRequest = PayInFactory.CreateValidDirectPayIn(_userNaturalResponse, _walletResponse,
             _cardRegistrationResponse, amount: debitedAmount, CurrencyIso.EUR);
-        
+
         // When
         var results = await Api.PayIns.CreateCardDirectAsync(directPayInRequest);
-        
+
         // Then
-        await StatusCodeValidator.ValidateStatusCode200Ok();
+        await StatusCodeValidator.ValidateStatusCode200OkAsync();
         IdValidator.ValidateId(results.Id, IdPrefixes.PayInIdPrefix);
         results.Status.ShouldBe(TransactionStatus.CREATED);
         results.PaymentType.ShouldBe(PayInPaymentType.CARD);

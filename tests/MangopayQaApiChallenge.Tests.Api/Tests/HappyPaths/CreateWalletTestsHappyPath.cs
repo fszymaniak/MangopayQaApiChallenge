@@ -15,7 +15,7 @@ public class CreateWalletTestsHappyPath : TestBaseSetup
     [SetUp]
     public async Task SetUp()
     {
-        _userNaturalResponse = await UserPayerSteps.CreateUserViaPostApiCall(UserFactory, Api);
+        _userNaturalResponse = await UserPayerSteps.CreateUserViaPostApiCallAsync(UserFactory, Api);
     }
 
     [Test]
@@ -27,10 +27,10 @@ public class CreateWalletTestsHappyPath : TestBaseSetup
         List<string> userIdsList = new List<string> { _userNaturalResponse.Id };
 
         // When
-        var results = await WalletSteps.CreateWalletViaPostApiCall(userIdsList, WalletFactory, Api);
-        
+        var results = await WalletSteps.CreateWalletViaPostApiCallAsync(userIdsList, WalletFactory, Api);
+
         // Then
-        await StatusCodeValidator.ValidateStatusCode200Ok();
+        await StatusCodeValidator.ValidateStatusCode200OkAsync();
         IdValidator.ValidateId(results.Id, IdPrefixes.WalletIdPrefix);
     }
     

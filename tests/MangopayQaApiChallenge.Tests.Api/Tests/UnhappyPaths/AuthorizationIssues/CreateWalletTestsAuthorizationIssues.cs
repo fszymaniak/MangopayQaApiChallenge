@@ -35,9 +35,9 @@ public class CreateWalletTestsAuthorizationIssues : TestBaseSetup
         
         // Then
         response.ShouldBe(null);
-        await StatusCodeValidator.ValidateStatusCode401Unauthorized();
+        await StatusCodeValidator.ValidateStatusCode401UnauthorizedAsync();
     }
-    
+
     [Test]
     [AllureLabel("AcceptanceCriteria", "AC02")]
     [AllureLabel("TestCase", "TC04")]
@@ -46,13 +46,13 @@ public class CreateWalletTestsAuthorizationIssues : TestBaseSetup
         // Given
         WalletDTO response = null!;
         Api.Config.ClientId = InvalidData.InvalidClientPassword;
-        
+
         // When
         response = await CallWalletEndpointWithInvalidCredentialsAndValidateResponse(response, _walletRequestData);
-        
+
         // Then
         response.ShouldBe(null);
-        await StatusCodeValidator.ValidateStatusCode401Unauthorized();
+        await StatusCodeValidator.ValidateStatusCode401UnauthorizedAsync();
     }
     
     private async Task<WalletDTO> CallWalletEndpointWithInvalidCredentialsAndValidateResponse(WalletDTO response, WalletPostDTO walletPostDto)

@@ -2,11 +2,11 @@ namespace MangopayQaApiChallenge.Tests.Api.Validators;
 
 public interface IStatusCodeValidator
 {
-    Task ValidateStatusCode(HttpStatusCode expectedStatusCode);
+    Task ValidateStatusCodeAsync(HttpStatusCode expectedStatusCode);
 
-    Task ValidateStatusCode200Ok();
+    Task ValidateStatusCode200OkAsync();
 
-    Task ValidateStatusCode401Unauthorized();
+    Task ValidateStatusCode401UnauthorizedAsync();
 
-    Task ValidateStatusCode400BadRequest();
+    Task ValidateStatusCode400BadRequestAsync();
 }

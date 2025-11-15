@@ -20,9 +20,9 @@ public class CreateNaturalPayerTestsHappyPath : TestBaseSetup
         
         // When
         var results = await Api.Users.CreatePayerAsync(userNaturalPayerPostDto);
-        
+
         // Then
-        await StatusCodeValidator.ValidateStatusCode200Ok();
+        await StatusCodeValidator.ValidateStatusCode200OkAsync();
         IdValidator.ValidateId(results.Id, IdPrefixes.UserIdPrefix);
     }
     

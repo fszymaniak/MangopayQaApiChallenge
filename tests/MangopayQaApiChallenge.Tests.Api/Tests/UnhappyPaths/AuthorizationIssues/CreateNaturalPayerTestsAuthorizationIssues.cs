@@ -32,9 +32,9 @@ public class CreateNaturalPayerTestsAuthorizationIssues : TestBaseSetup
         
         // Then
         response.ShouldBe(null);
-        await StatusCodeValidator.ValidateStatusCode401Unauthorized();
+        await StatusCodeValidator.ValidateStatusCode401UnauthorizedAsync();
     }
-    
+
     [Test]
     [AllureLabel("AcceptanceCriteria", "AC01")]
     [AllureLabel("TestCase", "TC04")]
@@ -43,13 +43,13 @@ public class CreateNaturalPayerTestsAuthorizationIssues : TestBaseSetup
         // Given
         UserNaturalDTO response = null!;
         Api.Config.ClientPassword = InvalidData.InvalidClientPassword;
-        
+
         // When
         response = await CallNaturalUserEndpointWithInvalidCredentialsAndValidateResponse(response, _userNaturalPayerPostDto);
-        
+
         // Then
         response.ShouldBe(null);
-        await StatusCodeValidator.ValidateStatusCode401Unauthorized();
+        await StatusCodeValidator.ValidateStatusCode401UnauthorizedAsync();
     }
 
     private async Task<UserNaturalDTO> CallNaturalUserEndpointWithInvalidCredentialsAndValidateResponse(UserNaturalDTO response, UserNaturalPayerPostDTO userNaturalPayerPostDto)

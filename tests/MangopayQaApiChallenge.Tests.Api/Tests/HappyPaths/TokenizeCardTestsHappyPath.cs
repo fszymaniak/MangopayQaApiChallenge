@@ -15,8 +15,8 @@ public class TokenizeCardTestsHappyPath : TestBaseSetup
     [SetUp]
     public async Task SetUp()
     {
-        var userNaturalResponse = await UserPayerSteps.CreateUserViaPostApiCall(UserFactory, Api);
-        _cardRegistrationResponse = await CardSteps.RegisterCardViaPostApiCall(userNaturalResponse.Id, CardFactory, Api);
+        var userNaturalResponse = await UserPayerSteps.CreateUserViaPostApiCallAsync(UserFactory, Api);
+        _cardRegistrationResponse = await CardSteps.RegisterCardViaPostApiCallAsync(userNaturalResponse.Id, CardFactory, Api);
     }
 
     [Test]
@@ -25,7 +25,7 @@ public class TokenizeCardTestsHappyPath : TestBaseSetup
     public async Task TokenizeCardEndpoint_TokenizeCard_Successfully()
     {
         // Given and when
-        var tokenizeResponse = await CardSteps.TokenizeCardViaPostApiCall(_cardRegistrationResponse, CardFactory, RestSharpDriver);
+        var tokenizeResponse = await CardSteps.TokenizeCardViaPostApiCallAsync(_cardRegistrationResponse, CardFactory, RestSharpDriver);
         var registrationData = tokenizeResponse!.Content;
         
         // Then
