@@ -25,6 +25,7 @@ public static class AllureMetadata
         public const string AC03 = "AC03";
         public const string AC04 = "AC04";
         public const string AC05 = "AC05";
+        public const string AC06 = "AC06";
     }
 
     public static class TestCase
