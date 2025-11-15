@@ -7,26 +7,24 @@
 public class RegisterCardTestsHappyPath : TestBaseSetup
 {
     private UserNaturalDTO _userNaturalResponse = null!;
-    private readonly UserPayerSteps _userPayerSteps = new UserPayerSteps();
-    private readonly CardSteps _cardSteps = new CardSteps();
-    
+
     public RegisterCardTestsHappyPath() : base(new MangoPayApi())
     {
     }
-    
+
     [SetUp]
-    public void SetUp()
+    public async Task SetUp()
     {
-        _userNaturalResponse = _userPayerSteps.CreateUserViaPostApiCall(UserFactory, Api).Result;
+        _userNaturalResponse = await UserPayerSteps.CreateUserViaPostApiCall(UserFactory, Api);
     }
-    
+
     [Test]
     [AllureLabel("AcceptanceCriteria", "AC03")]
     [AllureLabel("TestCase", "TC01")]
     public async Task CardRegistrationEndpoint_RegisterCard_Successfully()
     {
         // Given and When
-        var results = await _cardSteps.RegisterCardViaPostApiCall(_userNaturalResponse.Id, CardFactory, Api);
+        var results = await CardSteps.RegisterCardViaPostApiCall(_userNaturalResponse.Id, CardFactory, Api);
         
         // Then
         await StatusCodeValidator.ValidateStatusCode200Ok();
@@ -40,12 +38,12 @@ public class RegisterCardTestsHappyPath : TestBaseSetup
     public async Task CardRegistrationEndpoint_UpdateCard_Successfully()
     {
         // Given
-        var cardRegistrationResponse = await _cardSteps.RegisterCardViaPostApiCall(_userNaturalResponse.Id, CardFactory, Api);
-        var tokenizeResponse = await _cardSteps.TokenizeCardViaPostApiCall(cardRegistrationResponse, CardFactory, RestSharpDriver);
+        var cardRegistrationResponse = await CardSteps.RegisterCardViaPostApiCall(_userNaturalResponse.Id, CardFactory, Api);
+        var tokenizeResponse = await CardSteps.TokenizeCardViaPostApiCall(cardRegistrationResponse, CardFactory, RestSharpDriver);
         var registrationData = tokenizeResponse!.Content;
-        
+
         // When
-        var results = await _cardSteps.UpdateRegisteredCardViaPutApiCall(registrationData!, cardRegistrationResponse.Id, CardFactory, Api);
+        var results = await CardSteps.UpdateRegisteredCardViaPutApiCall(registrationData!, cardRegistrationResponse.Id, CardFactory, Api);
         
         // Then
         await StatusCodeValidator.ValidateStatusCode200Ok();

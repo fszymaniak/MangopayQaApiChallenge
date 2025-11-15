@@ -13,10 +13,10 @@ public class CreateWalletTestsAuthorizationIssues : TestBaseSetup
     }
     
     [SetUp]
-    public void SetUp()
+    public async Task SetUp()
     {
         var userNaturalRequestData =  UserFactory.CreateValidUser();
-        var userNaturalResponse = Api.Users.CreatePayerAsync(userNaturalRequestData).Result;
+        var userNaturalResponse = await Api.Users.CreatePayerAsync(userNaturalRequestData);
         List<string> userIdsList = new List<string> { userNaturalResponse.Id };
         _walletRequestData = WalletFactory.CreateValidWallet(userIdsList);
     }

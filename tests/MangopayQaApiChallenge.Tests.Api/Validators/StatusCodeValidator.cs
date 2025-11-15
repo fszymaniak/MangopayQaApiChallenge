@@ -15,23 +15,18 @@ public class StatusCodeValidator : IStatusCodeValidator
         this._api = api;
     }
 
-    public async Task ValidateStatusCode200Ok()
+    public Task ValidateStatusCode(HttpStatusCode expectedStatusCode)
     {
-        var lastRequestInfo = await GetLastRequestInfo();
-        lastRequestInfo.Response.StatusCode.ShouldBe(HttpStatusCode.OK);
-    }
-    
-    public async Task ValidateStatusCode401Unauthorized()
-    {
-        var lastRequestInfo = await GetLastRequestInfo();
-        lastRequestInfo.Response.StatusCode.ShouldBe(HttpStatusCode.Unauthorized);
+        var lastRequestInfo = GetLastRequestInfo();
+        lastRequestInfo.Response.StatusCode.ShouldBe(expectedStatusCode);
+        return Task.CompletedTask;
     }
 
-    public async Task ValidateStatusCode400BadRequest()
-    {
-        var lastRequestInfo = await GetLastRequestInfo();
-        lastRequestInfo.Response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
-    }
-    
-    private async Task<LastRequestInfo> GetLastRequestInfo() => await Task.Run(() => _api.LastRequestInfo) ?? throw new EmptyLastRequestInfoException();
+    public Task ValidateStatusCode200Ok() => ValidateStatusCode(HttpStatusCode.OK);
+
+    public Task ValidateStatusCode401Unauthorized() => ValidateStatusCode(HttpStatusCode.Unauthorized);
+
+    public Task ValidateStatusCode400BadRequest() => ValidateStatusCode(HttpStatusCode.BadRequest);
+
+    private LastRequestInfo GetLastRequestInfo() => _api.LastRequestInfo ?? throw new EmptyLastRequestInfoException();
 }

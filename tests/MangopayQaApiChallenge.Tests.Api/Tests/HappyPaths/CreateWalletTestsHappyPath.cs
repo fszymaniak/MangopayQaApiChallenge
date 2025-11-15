@@ -7,19 +7,17 @@
 public class CreateWalletTestsHappyPath : TestBaseSetup
 {
     private UserNaturalDTO _userNaturalResponse = null!;
-    private readonly UserPayerSteps _userPayerSteps = new UserPayerSteps();
-    private readonly WalletSteps _walletSteps = new WalletSteps();
-    
+
     public CreateWalletTestsHappyPath() : base(new MangoPayApi())
     {
     }
 
     [SetUp]
-    public void SetUp()
+    public async Task SetUp()
     {
-        _userNaturalResponse = _userPayerSteps.CreateUserViaPostApiCall(UserFactory, Api).Result;
+        _userNaturalResponse = await UserPayerSteps.CreateUserViaPostApiCall(UserFactory, Api);
     }
-    
+
     [Test]
     [AllureLabel("AcceptanceCriteria", "AC02")]
     [AllureLabel("TestCase", "TC01")]
@@ -29,7 +27,7 @@ public class CreateWalletTestsHappyPath : TestBaseSetup
         List<string> userIdsList = new List<string> { _userNaturalResponse.Id };
 
         // When
-        var results = await _walletSteps.CreateWalletViaPostApiCall(userIdsList, WalletFactory, Api);
+        var results = await WalletSteps.CreateWalletViaPostApiCall(userIdsList, WalletFactory, Api);
         
         // Then
         await StatusCodeValidator.ValidateStatusCode200Ok();
