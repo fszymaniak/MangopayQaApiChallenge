@@ -1,16 +1,12 @@
-﻿namespace MangopayQaApiChallenge.Tests.Api.Steps;
+namespace MangopayQaApiChallenge.Tests.Api.Steps;
 
 public class UserPayerSteps
 {
-    public UserPayerSteps()
-    {
-    }
-    
-    public async Task<UserNaturalDTO> CreateUserViaPostApiCall(IUserFactory userFactory, MangoPayApi api)
+    public async Task<UserNaturalDTO> CreateUserViaPostApiCallAsync(IUserFactory userFactory, MangoPayApi api)
     {
         var userNaturalRequestData = userFactory.CreateValidUser();
         var userNaturalResponse = await api.Users.CreatePayerAsync(userNaturalRequestData);
-        
+
         return userNaturalResponse;
     }
 }
