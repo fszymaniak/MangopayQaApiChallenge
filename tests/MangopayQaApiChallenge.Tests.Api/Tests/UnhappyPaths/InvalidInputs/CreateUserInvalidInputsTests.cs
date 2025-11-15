@@ -6,10 +6,6 @@
 [AllureSubSuite("CreateUserInvalidInputsTests")]
 public class CreateUserInvalidInputsTests : TestBaseSetup
 {
-    public CreateUserInvalidInputsTests() : base(new MangoPayApi())
-    {
-    }
-    
     [Test]
     [AllureLabel("AcceptanceCriteria", "AC02")]
     [AllureLabel("TestCase", "TC05")]
@@ -17,10 +13,10 @@ public class CreateUserInvalidInputsTests : TestBaseSetup
     {
         // Given
         UserDTO response = null!;
-        var invalidEmail = "email_invalid@";
+        var invalidEmail = InvalidData.InvalidEmailFormat;
         var userRequestData = UserFactory.CreateValidUser();
         userRequestData.Email = invalidEmail;
-        
+
         // When
         try
         {
@@ -29,9 +25,9 @@ public class CreateUserInvalidInputsTests : TestBaseSetup
         catch (Exception exception)
         {
             exception.GetType().ShouldBe(typeof(ResponseException));
-            exception.Message.ShouldContain($"The field Email must match the regular expression");
+            exception.Message.ShouldContain(ErrorMessages.EmailValidationError);
         }
-        
+
         // Then
         response.ShouldBe(null);
         await StatusCodeValidator.ValidateStatusCode400BadRequestAsync();

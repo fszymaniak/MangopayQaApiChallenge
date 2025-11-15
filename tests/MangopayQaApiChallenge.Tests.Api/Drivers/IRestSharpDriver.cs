@@ -5,5 +5,5 @@ namespace MangopayQaApiChallenge.Tests.Api.Drivers;
 
 public interface IRestSharpDriver
 {
-    Task<RestResponse> SendPostRequestToTokenizeCard(TokenizeRequestDto tokenizeRequestDto);
+    Task<RestResponse> SendPostRequestToTokenizeCardAsync(TokenizeRequestDto tokenizeRequestDto);
 }

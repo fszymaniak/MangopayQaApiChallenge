@@ -10,10 +10,6 @@ public class PayInTestsHappyPath : TestBaseSetup
     private WalletDTO _walletResponse = null!;
     private CardRegistrationDTO _cardRegistrationResponse = null!;
 
-    public PayInTestsHappyPath() : base(new MangoPayApi())
-    {
-    }
-
     [SetUp]
     public async Task SetUp()
     {
@@ -31,7 +27,7 @@ public class PayInTestsHappyPath : TestBaseSetup
     public async Task PayInEndpoint_MadePayIn_Successfully()
     {
         // Given
-        int debitedAmount = 10000;
+        int debitedAmount = TestDataConstants.DefaultDebitedAmount;
         var directPayInRequest = PayInFactory.CreateValidDirectPayIn(_userNaturalResponse, _walletResponse,
             _cardRegistrationResponse, amount: debitedAmount, CurrencyIso.EUR);
 

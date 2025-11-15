@@ -8,10 +8,6 @@ public class TokenizeCardTestsHappyPath : TestBaseSetup
 {
     private CardRegistrationDTO _cardRegistrationResponse = null!;
 
-    public TokenizeCardTestsHappyPath() : base(new MangoPayApi())
-    {
-    }
-
     [SetUp]
     public async Task SetUp()
     {
@@ -30,6 +26,6 @@ public class TokenizeCardTestsHappyPath : TestBaseSetup
         
         // Then
         registrationData.ShouldNotBe(null);
-        registrationData.ShouldStartWith("data=");
+        registrationData.ShouldStartWith(TestDataConstants.RegistrationDataPrefix);
     }
 }

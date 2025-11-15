@@ -7,10 +7,6 @@
 public class CreateNaturalPayerTestsAuthorizationIssues : TestBaseSetup
 {
     private UserNaturalPayerPostDTO _userNaturalPayerPostDto = null!;
-    
-    public CreateNaturalPayerTestsAuthorizationIssues() : base(new MangoPayApi())
-    {
-    }
 
     [SetUp]
     public void SetUp()
@@ -61,7 +57,7 @@ public class CreateNaturalPayerTestsAuthorizationIssues : TestBaseSetup
         catch (Exception exception)
         {
             exception.GetType().ShouldBe(typeof(UnauthorizedAccessException));
-            exception.Message.ShouldContain("invalid_client");
+            exception.Message.ShouldContain(ErrorMessages.InvalidClientError);
         }
 
         return response;

@@ -4,11 +4,11 @@ public class RequestDetailsProvider : IRequestDetailsProvider
 {
     public string GetUrl(string rawUrl)
     {
-        return rawUrl.Split(".com")[0] + ".com";
+        return rawUrl.Split(UrlConstants.DomainSuffix)[0] + UrlConstants.DomainSuffix;
     }
 
     public string GetEndpoint(string rawUrl)
     {
-        return rawUrl.Split(".com")[1];
+        return rawUrl.Split(UrlConstants.DomainSuffix)[1];
     }
 }

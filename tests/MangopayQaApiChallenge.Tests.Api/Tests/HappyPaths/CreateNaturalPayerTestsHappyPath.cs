@@ -6,10 +6,6 @@ namespace MangopayQaApiChallenge.Tests.Api.Tests.HappyPaths;
 [AllureSubSuite("CreateNaturalPayerTestsHappyPath")]
 public class CreateNaturalPayerTestsHappyPath : TestBaseSetup
 {
-    public CreateNaturalPayerTestsHappyPath() : base(new MangoPayApi())
-    {
-    }
-
     [Test]
     [AllureLabel("AcceptanceCriteria", "AC01")]
     [AllureLabel("TestCase", "TC01")]
