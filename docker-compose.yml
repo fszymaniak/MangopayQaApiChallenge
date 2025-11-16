@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mangopay-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: test
+    container_name: mangopay-qa-tests
+    environment:
+      # Override these with your actual credentials
+      # Option 1: Set via environment variables on host
+      # Option 2: Use .env file (recommended for local development)
+      - MangopayApi__CLIENT_ID=${CLIENT_ID}
+      - MangopayApi__API_KEY=${API_KEY}
+    volumes:
+      # Mount allure-results directory to host for report generation
+      - ./allure-results:/src/tests/MangopayQaApiChallenge.Tests.Api/bin/Release/net6.0/allure-results
+    command: dotnet test -c Release --no-build --verbosity normal
+
+  # Optional: Service to generate and serve Allure reports
+  allure-server:
+    image: frankescobar/allure-docker-service:2.13.8
+    container_name: mangopay-allure-server
+    ports:
+      - "5050:5050"
+    environment:
+      CHECK_RESULTS_EVERY_SECONDS: 5
+      KEEP_HISTORY: 1
+    volumes:
+      - ./allure-results:/app/allure-results
+      - ./allure-reports:/app/allure-reports
+    profiles:
+      - report
+
+volumes:
+  allure-results:
+  allure-reports:

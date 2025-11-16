@@ -1,0 +1,54 @@
+# Build outputs
+**/bin/
+**/obj/
+**/out/
+
+# Test results
+**/TestResults/
+**/allure-results/
+**/allure-reports/
+
+# IDE and editor files
+.idea/
+.vs/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation and images
+*.md
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Docker files (not needed in build context)
+**/Dockerfile*
+**/docker-compose*
+**/.dockerignore
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# User secrets and environment files
+**/secrets.json
+**/.env
+**/.env.local
+
+# NuGet packages
+**/packages/
+*.nupkg
+
+# Build logs
+*.log
+*.binlog
+
+# License
+LICENSE

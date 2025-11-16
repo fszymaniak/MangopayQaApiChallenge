@@ -40,6 +40,53 @@ After that please copy appsettings.json into secrets.json and update the values 
 ## Running the tests
 Tests can be found inside the Test folder in the MangopayQaApiChallenge.Tests.Api project [here](https://github.com/fszymaniak/MangopayQaApiChallenge/tree/main/tests/MangopayQaApiChallenge.Tests.Api/Tests)
 
+### Using Docker (Recommended)
+
+#### Prerequisites
+- Docker installed on your machine
+- Docker Compose (included with Docker Desktop)
+
+#### Setup
+1. Copy the `.env.example` file to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Update the `.env` file with your Mangopay API credentials:
+   ```
+   CLIENT_ID=your_actual_client_id
+   API_KEY=your_actual_api_key
+   ```
+
+#### Run tests with Docker
+```bash
+# Build and run tests
+docker-compose up --build
+
+# Run tests in detached mode
+docker-compose up -d
+
+# View logs
+docker-compose logs -f mangopay-tests
+```
+
+#### Generate and view Allure reports with Docker
+```bash
+# Run tests and start Allure report server
+docker-compose --profile report up --build
+
+# Access Allure reports at http://localhost:5050
+```
+
+#### Clean up
+```bash
+# Stop and remove containers
+docker-compose down
+
+# Remove volumes (including allure results)
+docker-compose down -v
+```
+
 ### From the IDE
 Open your IDE, build the project and then from the Test Explorer (Visual Studio) or Unit Tests window (Rider) you can click on them and run all or selected ones.
 
@@ -74,8 +121,8 @@ As a result, the local index.html web page with reports should be visible:
 ## What can be added/improved
 - adding logging
 - add some contract tests
-- add E2E flow for the whole User Story
-- dockerize the project
+- add E2E flow for the whole User Story ✅
+- dockerize the project ✅
 - setup CI pipeline
 - dependency injection for the NUnit framework
 
